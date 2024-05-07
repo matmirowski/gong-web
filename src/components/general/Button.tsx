@@ -21,13 +21,13 @@ export enum ButtonState {
   
     switch (state) {
       case ButtonState.Active:
-        stateClasses = "bg-gradient-to-r from-button-light-blue to-button-dark-blue text-white";
+        stateClasses = "bg-gradient-to-r from-light-blue to-dark-blue text-white";
         break;
       case ButtonState.Unactive:
-        stateClasses = "bg-gray-400 text-white";
+        stateClasses = "bg-gray-400 white";
         break;
       case ButtonState.ActiveWhite:
-        stateClasses = "bg-white text-button-dark-blue";
+        stateClasses = "bg-white dark-blue";
         break;
     }
   
