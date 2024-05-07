@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       colors: {
         'light-blue': '#D6E4F0',
-        'dark-blue': '#163172',  
+        'button-light-blue': '#1E56A0',  
+        'button-dark-blue': '#163172',  
       },
     },
   },
