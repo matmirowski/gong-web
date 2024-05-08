@@ -1,13 +1,11 @@
 import React from 'react';
 import Box from '../components/general/BlueBackgroundBox';
-import LoginInputField from '../components/sign/LoginInputField';
-import PasswordInputField from '../components/sign/PasswordInputField';
+import SignInForm from '../components/sign/SignInForm';
 
 const Sign = () => {
     return (
         <Box>
-            <LoginInputField/>
-            <PasswordInputField/>
+            <SignInForm></SignInForm>
         </Box>
     );
 };

@@ -7,7 +7,7 @@ export enum ButtonState {
   }
   
   interface ButtonProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     onClick: () => void;
     state: ButtonState;
     className?: string;
