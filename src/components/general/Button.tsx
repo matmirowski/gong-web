@@ -12,11 +12,13 @@ export enum ButtonState {
     state: ButtonState;
     className?: string;
     width?: string;
+    height?: string;
+    fontSize?: string;
   }
   
 
-  const Button: React.FC<ButtonProps> = ({ children, onClick, state, className, width }) => {
-    const baseClasses = "border-none rounded px-5 py-2.5 text-lg font-bold uppercase cursor-pointer outline-none transition-filter duration-300 ease-in-out hover:brightness-90";
+  const Button: React.FC<ButtonProps> = ({ children, onClick, state, className, width, height, fontSize}) => {
+    const baseClasses = "border-none rounded px-5 py-2.5 font-bold uppercase cursor-pointer outline-none transition-filter duration-300 ease-in-out hover:brightness-90 flex items-center justify-center";
     let stateClasses = "";
   
     switch (state) {
@@ -32,7 +34,9 @@ export enum ButtonState {
     }
   
     const style = {
-      width: `${width}px`
+      width: width ? `${width}px` : undefined,
+        height: height ? `${height}px` : undefined,
+        fontSize: fontSize
     };
   
     const finalClasses = `${baseClasses} ${stateClasses} ${className || ''} ${width != null ? style : ''}`;
