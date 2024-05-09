@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from '../components/general/BlueBackgroundBox';
+import Box from '../components/general/Box';
 import SignInForm from '../components/sign/SignInForm';
 import { Link } from 'react-router-dom';
 import Button, { ButtonState } from '../components/general/Button';
