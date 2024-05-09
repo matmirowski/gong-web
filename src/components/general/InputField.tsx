@@ -54,7 +54,7 @@ const InputField: React.FC<InputFieldProps> = ({
                         onChange={handleInputChange}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
-                        className="w-full h-full px-3 py-2 bg-transparent focus:outline-none text-lg proxima-nova"
+                        className="w-full h-full px-3 py-2 bg-transparent focus:outline-none text-lg"
                         placeholder=" "
                     />
                 )}
