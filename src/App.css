@@ -38,3 +38,12 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'proxima-nova';
+  src: url('./fonts/ProximaNova-Regular.otf') format('opentype');
+}
+.proxima-nova {
+  font-family: proxima-nova;
+  letter-spacing: 10px;
+}

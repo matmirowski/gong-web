@@ -7,6 +7,7 @@ import Sign from './pages/SignInPage';
 
 function App() {
   return (
+    <div className='font-sans tracking-wider'>
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -15,6 +16,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 

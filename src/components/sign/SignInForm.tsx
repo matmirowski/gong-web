@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import InputField from '../general/InputField'; // Adjust the path as necessary
-import Button, { ButtonState } from '../general/Button'; // Adjust the path as necessary
+import InputField from '../general/InputField';
+import Button, { ButtonState } from '../general/Button';
+import { Link } from 'react-router-dom';
 
 const SignInForm: React.FC = () => {
     const [username, setUsername] = useState<string>('');
@@ -8,29 +9,37 @@ const SignInForm: React.FC = () => {
 
     const handleLogin = () => {
         console.log('Username:', username, 'Password:', password);
-        // Here you would typically handle authentication
     };
 
     return (
         <div className="flex flex-col items-center justify-center p-4">
+            <div className='bg-black my-11'></div>
+            <text className='text-button-light-blue font-extrabold text-3xl'>Wprowadz prawidlowe dane</text>
+            <div className='bg-black my-3'></div>
             <InputField
-                text="Username"
+                text="Login"
                 onChange={setUsername}
+                width={400}
+                height={90}
             />
             <InputField
-                text="Password"
+                text="Haslo"
                 secret={true}
                 onChange={setPassword}
+                width={400}
+                height={90}
             />
+            <Link  className='text-button-light-blue font-extrabold' to={'/'}>Nie posiadasz konta? Zarejestruj sie!</Link>
+            <div className='bg-black my-11'></div>
             <Button
                 onClick={handleLogin}
                 state={ButtonState.Active}
                 className="mt-4"
-                width="300"
-                height="50"
-                fontSize="16px"
+                width="250"
+                height="55"
+                fontSize="28px"
             >
-                Sign In
+                Zaloguj
             </Button>
         </div>
     );
