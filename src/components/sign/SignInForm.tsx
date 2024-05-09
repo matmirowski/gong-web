@@ -21,6 +21,7 @@ const SignInForm: React.FC = () => {
                 onChange={setUsername}
                 width={400}
                 height={90}
+                required={true}
             />
             <InputField
                 text="Haslo"
@@ -28,6 +29,7 @@ const SignInForm: React.FC = () => {
                 onChange={setPassword}
                 width={400}
                 height={90}
+                required={true}
             />
             <Link  className='text-button-light-blue font-extrabold' to={'/'}>Nie posiadasz konta? Zarejestruj sie!</Link>
             <div className='bg-black my-11'></div>

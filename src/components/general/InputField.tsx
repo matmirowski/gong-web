@@ -8,6 +8,7 @@ interface InputFieldProps {
     width?: number;
     height?: number;
     padding?: number;
+    required?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -17,7 +18,8 @@ const InputField: React.FC<InputFieldProps> = ({
     onChange,
     width = 687,
     height = 85,
-    padding = 16
+    padding = 16,
+    required = false
 }) => {
     const [value, setValue] = useState<string>('');
     const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -64,7 +66,7 @@ const InputField: React.FC<InputFieldProps> = ({
                     style={{ background: 'transparent', padding: '0 4px', zIndex: 10 }}
                 >
                     {text}
-                    <span className="text-red-500">*</span>
+                    {required ? <span className="text-red-500">*</span> : <></>}
                 </label>
             </div>
         </div>
