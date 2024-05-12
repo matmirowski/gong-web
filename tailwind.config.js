@@ -8,7 +8,8 @@ module.exports = {
       colors: {
         'light-blue': '#D6E4F0',
         'button-light-blue': '#1E56A0',  
-        'button-dark-blue': '#163172',  
+        'button-dark-blue': '#163172', 
+        't-dark-blue': '#163172', 
       },
       fontFamily: {
         sans: ['proxima-nova', 'ui-sans-serif', 'system-ui'],
