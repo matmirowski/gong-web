@@ -49,7 +49,7 @@ const SignInForm: React.FC = () => {
     return (
         <div className="flex flex-col items-center justify-center p-4">
             <div className='bg-black my-11'></div>
-            <text className='text-button-light-blue font-extrabold text-3xl'>Wprowadz prawidlowe dane</text>
+            <text className='text-button-light-blue font-black text-3xl'>Wprowadź prawidłowe dane</text>
             <div className='bg-black my-3'></div>
             <InputField
                 text="Login"

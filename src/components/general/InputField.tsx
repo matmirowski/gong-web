@@ -39,7 +39,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
     return (
         <div style={{ width: `${width}px`, height: `${height}px`, padding: `${padding}px`, position: 'relative', overflow: 'hidden' }}>
-            <div className="relative border-4 border-blue-500 rounded-md" style={{ height: '100%' }}>
+            <div className="relative border-4 border-t-dark-blue rounded-md" style={{ height: '100%' }}>
                 {multiline && !secret ? (
                     <textarea
                         value={value}
@@ -62,7 +62,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 )}
                 <label
                     className={`absolute transition-all text-lg font-bold duration-300 ease-in-out
-                                ${value || isFocused ? '-top-7 left-1  text-blue-500' : 'left-3 top-2 text-blue-500'}`}
+                                ${value || isFocused ? '-top-7 left-1  text-t-dark-blue' : 'left-3 top-2 text-t-dark-blue'}`}
                     style={{ background: 'transparent', padding: '0 4px', zIndex: 10 }}
                 >
                     {text}

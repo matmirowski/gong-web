@@ -18,7 +18,7 @@ export enum ButtonState {
   
 
   const Button: React.FC<ButtonProps> = ({ children, onClick, state, className, width, height, fontSize}) => {
-    const baseClasses = "rounded px-5 py-2.5 font-bold uppercase cursor-pointer outline-none transition-filter duration-300 ease-in-out hover:brightness-90 flex items-center justify-center";
+    const baseClasses = "rounded-[10px] px-5 py-2.5 font-bold uppercase cursor-pointer outline-none transition-filter duration-300 ease-in-out hover:brightness-90 flex items-center justify-center";
     let stateClasses = "";
 
     switch (state) {
