@@ -1,20 +1,72 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import Box from '../components/general/Box';
 import Button, { ButtonState } from '../components/general/Button';
 import Navbar from '../components/general/Navbar';
 import LandingPageGraphic from '../resources/2.webp';
 
-const LandingPage = () => {
+interface JwtPayload {
+    userId: number;
+    role: string;
+    iat: number;
+    exp: number;
+}
+
+const LandingPage: React.FC = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [userRole, setUserRole] = useState<string>('');
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwtToken');
+        if (token && token.split('.').length === 3) {
+            try {
+                const decoded: JwtPayload = jwtDecode<JwtPayload>(token);
+                const isExpired: boolean = Date.now() >= decoded.exp * 1000;
+                if (!isExpired) {
+                    setIsLoggedIn(true);
+                    setUserRole(decoded.role);
+                } else {
+                    localStorage.removeItem('jwtToken');
+                }
+            } catch (error) {
+                console.error('Failed to decode token:', error);
+                localStorage.removeItem('jwtToken');
+            }
+        }
+    }, []);
+
     return (
         <>
             <Navbar>
-                <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
-                    <Link to="/sign">Zaloguj</Link>
-                </Button>
-                <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
-                    <Link to="/">Zarejestruj</Link>
-                </Button>
+                {isLoggedIn ? (
+                    <>
+                        {userRole === 'owner' && (
+                            <Button onClick={() => console.log('Navigating to admin...')} state={ButtonState.Active} width='136' height='35'>
+                                <Link to="/admin">Admin Panel</Link>
+                            </Button>
+                        )}
+                        <Button onClick={() => console.log('Navigating to profile...')} state={ButtonState.Active} width='136' height='35'>
+                            <Link to="/profile">Profil</Link>
+                        </Button>
+                        <Button onClick={() => {
+                            console.log('Logging out...');
+                            localStorage.removeItem('jwtToken');
+                            window.location.reload();
+                        }} state={ButtonState.Active} width='136' height='35'>
+                            <Link to="/">Wyloguj</Link>
+                        </Button>
+                    </>
+                ) : (
+                    <>
+                        <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
+                            <Link to="/sign">Zaloguj</Link>
+                        </Button>
+                        <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
+                            <Link to="/register">Zarejestruj</Link>
+                        </Button>
+                    </>
+                )}
             </Navbar>
             <Box>
             <div className="grid grid-cols-2 items-center justify-center h-full">

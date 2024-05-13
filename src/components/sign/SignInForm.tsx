@@ -24,7 +24,7 @@ const SignInForm: React.FC = () => {
         if (response.ok) {
             const data = await response.json();
             console.log('Login successful:', data);
-            localStorage.setItem('jwtToken', data.jwtToken);
+            localStorage.setItem('jwtToken', data.token);
             console.log('JWT Token stored:', localStorage.getItem('jwtToken'));
 
             navigate('/home');
