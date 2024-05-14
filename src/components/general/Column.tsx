@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ColumnProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   width?: string;
   mdWidth?: string;
   lgWidth?: string;
