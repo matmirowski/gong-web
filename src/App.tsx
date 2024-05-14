@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage';
 
 import './App.css';
 import Sign from './pages/SignInPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/sign" element={<Sign/>} />
+          <Route path="/register" element={<RegisterPage/>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     </BrowserRouter>
