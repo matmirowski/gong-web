@@ -41,7 +41,12 @@ const LandingPage: React.FC = () => {
             <Navbar>
                 {isLoggedIn ? (
                     <>
-                        {userRole === 'owner' && (
+                      {userRole === 'owner' && (
+                            <Button onClick={() => console.log('Navigating to owner...')} state={ButtonState.Active} width='136' height='35'>
+                                <Link to="/owner">Owner Panel</Link>
+                            </Button>
+                        )}
+                        {userRole === 'admin' && (
                             <Button onClick={() => console.log('Navigating to admin...')} state={ButtonState.Active} width='136' height='35'>
                                 <Link to="/admin">Admin Panel</Link>
                             </Button>
