@@ -31,8 +31,6 @@ const RegisterForm: React.FC = () => {
         });
 
         if (response.ok) {
-            const data = await response.json();
-            console.log('Registration successful:', data);
             navigate('/sign');
         } else {
             console.error('Registration failed:', await response.text());
