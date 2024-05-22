@@ -10,7 +10,7 @@ const Box: React.FC<BoxProps> = ({ children }) => {
     <div className="flex items-center justify-center min-h-screen">
       <div className="relative bg-light-blue p-5 rounded-[50px] w-[1000px] h-[600px] mx-auto">
         <div className="absolute left-5 top-5">
-          <Icon name="logo-black" size={150} />
+          <Icon name="logo-black" size={125} />
         </div>
         {children}
       </div>
