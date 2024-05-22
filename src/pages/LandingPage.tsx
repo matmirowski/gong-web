@@ -48,7 +48,7 @@ const LandingPage: React.FC = () => {
                         )}
                         {userRole === 'admin' && (
                             <Button onClick={() => console.log('Navigating to admin...')} state={ButtonState.Active} width='136' height='35' fontSize='12px'>
-                                <Link to="/admin">Panel admina</Link>
+                                <Link to="/admin/branches">Panel admina</Link>
                             </Button>
                         )}
                         <Button onClick={() => {
