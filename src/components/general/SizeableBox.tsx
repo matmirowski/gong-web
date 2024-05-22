@@ -1,5 +1,4 @@
 import React from "react";
-import Icon from "./Icon";
 
 interface BoxProps {
   children?: React.ReactNode;
@@ -17,9 +16,6 @@ const SizeableBox: React.FC<BoxProps> = ({ children, height}) => {
         className="relative bg-light-blue p-5 rounded-[50px] w-[1000px] mx-auto my-20"
         style={style}
       >
-        <div className="absolute left-5 top-5">
-          <Icon name="logo-black" size={125} />
-        </div>
         {children}
       </div>
     </div>
