@@ -7,6 +7,7 @@ import Sign from './pages/SignInPage';
 import RegisterPage from './pages/RegisterPage';
 import BranchesListPage from './pages/Owner/BranchesListPage';
 import AuthGuard from './components/general/AuthGuard';
+import AdminBranchesPage from './pages/admin/AdminBranchesPage';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           <Route path="/register" element={<RegisterPage/>} />
           <Route element={<AuthGuard allowedRoles={['owner']} />}>
             <Route path="/owner/branches" element={<BranchesListPage />} />
+          </Route>
+          <Route element={<AuthGuard allowedRoles={['admin']} />}>
+            <Route path="/admin/branches" element={<AdminBranchesPage/>} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
