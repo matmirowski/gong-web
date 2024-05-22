@@ -6,7 +6,7 @@ import Button, { ButtonState } from '../components/general/Button';
 import Navbar from '../components/general/Navbar';
 import LandingPageGraphic from '../resources/2.webp';
 
-interface JwtPayload {
+export interface JwtPayload {
     userId: number;
     role: string;
     iat: number;
@@ -43,7 +43,7 @@ const LandingPage: React.FC = () => {
                     <>
                       {userRole === 'owner' && (
                             <Button onClick={() => console.log('Navigating to owner...')} state={ButtonState.Active} width='136' height='35'>
-                                <Link to="/owner">Owner Panel</Link>
+                                <Link to="/owner/branches">Owner Panel</Link>
                             </Button>
                         )}
                         {userRole === 'admin' && (

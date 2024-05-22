@@ -5,6 +5,8 @@ import LandingPage from './pages/LandingPage';
 import './App.css';
 import Sign from './pages/SignInPage';
 import RegisterPage from './pages/RegisterPage';
+import BranchesListPage from './pages/Owner/BranchesListPage';
+import AuthGuard from './components/general/AuthGuard';
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/sign" element={<Sign/>} />
           <Route path="/register" element={<RegisterPage/>} />
+          <Route element={<AuthGuard allowedRoles={['owner']} />}>
+            <Route path="/owner/branches" element={<BranchesListPage />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     </BrowserRouter>
