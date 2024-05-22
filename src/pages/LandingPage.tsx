@@ -42,18 +42,15 @@ const LandingPage: React.FC = () => {
                 {isLoggedIn ? (
                     <>
                       {userRole === 'owner' && (
-                            <Button onClick={() => console.log('Navigating to owner...')} state={ButtonState.Active} width='136' height='35'>
-                                <Link to="/owner/branches">Owner Panel</Link>
+                            <Button onClick={() => console.log('Navigating to owner...')} state={ButtonState.Active} width='136' height='35' fontSize='12px'>
+                                <Link to="/home">Strona główna</Link>
                             </Button>
                         )}
                         {userRole === 'admin' && (
-                            <Button onClick={() => console.log('Navigating to admin...')} state={ButtonState.Active} width='136' height='35'>
-                                <Link to="/admin">Admin Panel</Link>
+                            <Button onClick={() => console.log('Navigating to admin...')} state={ButtonState.Active} width='136' height='35' fontSize='12px'>
+                                <Link to="/admin">Panel admina</Link>
                             </Button>
                         )}
-                        <Button onClick={() => console.log('Navigating to profile...')} state={ButtonState.Active} width='136' height='35'>
-                            <Link to="/profile">Profil</Link>
-                        </Button>
                         <Button onClick={() => {
                             console.log('Logging out...');
                             localStorage.removeItem('jwtToken');

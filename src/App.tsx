@@ -14,7 +14,9 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<HomePage />} />
+          <Route element={<AuthGuard allowedRoles={['owner']} />}>
+            <Route path="/home" element={<HomePage/>} />
+          </Route>
           <Route path="/sign" element={<Sign/>} />
           <Route path="/register" element={<RegisterPage/>} />
           <Route element={<AuthGuard allowedRoles={['owner']} />}>
