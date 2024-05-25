@@ -1,47 +1,127 @@
 import React, { useState } from "react";
+import { CSSProperties } from "react";
 
 interface Category {
   id: number;
   name: string;
 }
 
-interface DropdownProps {
+interface DropdownMenuProps {
   options: Category[];
-  onChange: (value: Category) => void;
+  onSelect: (value: string) => void;
+  placeholder?: string;
+  width?: number;
+  height?: number;
+  padding?: number;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onChange }) => {
-  const [selectedValue, setSelectedValue] = useState<string>("");
+const Dropdown: React.FC<DropdownMenuProps> = ({
+  options,
+  onSelect,
+  placeholder = "Select an option",
+  width = 300,
+  height = 65,
+  padding = 16,
+}) => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOption = options.find(
-      (option) => option.name === event.target.value
-    );
-    if (selectedOption) {
-      setSelectedValue(event.target.value);
-      onChange(selectedOption);
-    }
+  const handleOptionClick = (option: Category) => {
+    setSelectedOption(option.name);
+    setIsOpen(false);
+    onSelect(option.name);
   };
+
+  const dropdownListStyle: CSSProperties = {
+    position: "absolute",
+    width: `${width}px`,
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 10,
+    border: "2px solid darkblue",
+    borderRadius: "4px",
+    marginTop: "2px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "#D6E4F0",
+  };
+
+  const listItemStyle: CSSProperties = {
+    padding: "0 16px",
+    height: `${height}px`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "start",
+    cursor: "pointer",
+    color: "#000",
+    fontSize: "18px",
+    backgroundColor: "#D6E4F0",
+  };
+
+  const selectorStyle: CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: `${height}px`,
+    width: "100%",
+    padding: `0 ${padding}px`,
+    border: "2px solid darkblue",
+    borderRadius: "4px",
+    cursor: "pointer",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "#D6E4F0",
+  };
+
+  const listItemHoverStyle: CSSProperties = {
+    background: "#0000FF20",
+  };
+
+  const selectedItemStyle: CSSProperties = {
+    background: "rgba(0, 0, 255, 0.1)",
+    fontWeight: "bold",
+  };
+
   return (
-    <div className="w-[685px] rounded-[10px] px-5 py-2.5 font-bold transition-filter duration-300 ease-in-out hover:brightness-90 flex items-center justify-center">
-      <select
-        value={selectedValue}
-        onChange={handleChange}
-        className="w-full h-[75px] text-center rounded-[10px] text-[32px] bg-gradient-to-r from-button-light-blue to-button-dark-blue text-white border-transparent focus:border-white uppercase"
-      >
-        <option value="" disabled className="text-white uppercase">
-          Kategorie
-        </option>
-        {options.map((option) => (
-          <option
-            key={option.id}
-            value={option.name}
-            className="bg-button-dark-blue text-white hover:bg-light-blue hover:text-t-dark-blue border-b border-white"
-          >
-            {option.name}
-          </option>
-        ))}
-      </select>
+    <div
+      className="flex flex-col items-center justify-center w-full h-full font-proxima-nova font-extrabold uppercase"
+      style={{ position: "relative" }}
+    >
+      <div style={{ width: `${width}px`, position: "relative" }}>
+        <div
+          className="cursor-pointer"
+          onClick={() => setIsOpen(!isOpen)}
+          style={selectorStyle}
+        >
+          <span className="text-xl">{selectedOption || placeholder}</span>
+          <span className="ml-auto">&#9660;</span>
+        </div>
+        {isOpen && (
+          <ul style={{ ...dropdownListStyle, top: `${height + 2}px` }}>
+            {options.map((option) => (
+              <li
+                key={option.id}
+                style={{
+                  ...listItemStyle,
+                  ...(selectedOption === option.name ? selectedItemStyle : {}),
+                }}
+                className="cursor-pointer font-proxima-nova"
+                onClick={() => handleOptionClick(option)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    listItemHoverStyle.background as string;
+                  e.currentTarget.style.color =
+                    listItemHoverStyle.color as string;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#D6E4F0";
+                  e.currentTarget.style.color = "#000";
+                }}
+              >
+                {option.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
