@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import Icon from '../general/Icon';
 import useAuth from '../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 interface Item {
+  id: number;
   name: string;
-  address: string;
+  address: {
+    street: string;
+    city: string;
+    buildingNumber: number;
+    distanceFromUniversity: number;
+  };
 }
 
 interface Category {
@@ -44,7 +51,7 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                   <div key={index} className="bg-white flex items-center justify-between p-4 mb-1 border rounded-lg shadow">
                     <div>
                       <div className="text-black text-3xl font-extrabold font-proxima-nova">{item.name}</div>
-                      <div className="text-black text-lg font-extrabold">{item.address}</div>
+                      <div className="text-black text-lg font-extrabold">{item.address.city}</div>
                     </div>
                     {userRole === 'owner' ? (
                       <div className="flex space-x-10">
@@ -52,16 +59,25 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                         <Icon withBorder={true} name="icon-camera" size={60} />
                       </div>
                     ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
-<rect width="80" height="80" rx="10" fill="#1E56A0"/>
-<rect x="5" y="5" width="70" height="70" rx="5" fill="white"/>
-<circle cx="20" cy="60" r="5" fill="#163172"/>
-<circle cx="20" cy="40" r="5" fill="#163172"/>
-<circle cx="20" cy="22" r="5" fill="#163172"/>
-<rect x="35" y="18" width="31" height="9" rx="3" fill="#163172"/>
-<rect x="35" y="54" width="31" height="9" rx="3" fill="#163172"/>
-<rect x="35" y="36" width="31" height="9" rx="3" fill="#163172"/>
-</svg>
+                      <Link to={`/admin/branches/${item.id}`}>
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="80" 
+                        height="80" 
+                        viewBox="0 0 80 80" 
+                        fill="none"
+                        style={{ cursor: 'pointer' }} // Add cursor pointer
+                      >
+                        <rect width="80" height="80" rx="10" fill="#1E56A0"/>
+                        <rect x="5" y="5" width="70" height="70" rx="5" fill="white"/>
+                        <circle cx="20" cy="60" r="5" fill="#163172"/>
+                        <circle cx="20" cy="40" r="5" fill="#163172"/>
+                        <circle cx="20" cy="22" r="5" fill="#163172"/>
+                        <rect x="35" y="18" width="31" height="9" rx="3" fill="#163172"/>
+                        <rect x="35" y="54" width="31" height="9" rx="3" fill="#163172"/>
+                        <rect x="35" y="36" width="31" height="9" rx="3" fill="#163172"/>
+                      </svg>
+                      </Link>
                     )}
                   </div>
                 ))}

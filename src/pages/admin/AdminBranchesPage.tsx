@@ -62,24 +62,15 @@ const AdminBranchesPage: React.FC = () => {
   const categories = [
     {
       category: 'Aktywne',
-      items: activeBranches.map(branch => ({
-        name: branch.name,
-        address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
-      }))
+      items: activeBranches,
     },
     {
       category: 'Oczekujace',
-      items: pendingBranches.map(branch => ({
-        name: branch.name,
-        address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
-      }))
+      items: pendingBranches,
     },
     {
       category: 'Odrzucone',
-      items: rejectedBranches.map(branch => ({
-        name: branch.name,
-        address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
-      }))
+      items:rejectedBranches
     }
   ];
 
@@ -90,13 +81,13 @@ const AdminBranchesPage: React.FC = () => {
   return (
     <>
       <Navbar>
-      <Button onClick={() => {
-                            console.log('Logging out...');
-                            localStorage.removeItem('jwtToken');
-                            window.location.reload();
-                        }} state={ButtonState.Active} width='136' height='35'>
-                            <Link to="/">Wyloguj</Link>
-                        </Button>
+        <Button onClick={() => {
+          console.log('Logging out...');
+          localStorage.removeItem('jwtToken');
+          window.location.reload();
+        }} state={ButtonState.Active} width='136' height='35'>
+          <Link to="/">Wyloguj</Link>
+        </Button>
       </Navbar>
       <BranchesList categories={categories} />
     </>
