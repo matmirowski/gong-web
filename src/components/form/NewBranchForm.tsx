@@ -24,8 +24,7 @@ const NewBranchForm: React.FC = () => {
   const [image, setImage] = useState<string>("");
   const [lowerPriceRange, setLowerPriceRange] = useState<number>(0);
   const [higherPriceRange, setHigherPriceRange] = useState<number>(0);
-  const [distanceFromUniversity, setDistanceFromUniversity] =
-    useState<number>(0);
+  const [distanceFromUniversity, setDistanceFromUniversity] = useState<number>(0);
   const [categoryId, setCategoryId] = useState<number>(0);
   const [openingTime, setOpeningTime] = useState<string>("");
   const [closingTime, setClosingTime] = useState<string>("");
@@ -76,7 +75,7 @@ const NewBranchForm: React.FC = () => {
       }
 
       console.log("Formularz przesłany pomyślnie.");
-      navigate("/home");
+      navigate("/summary");
     } catch (error) {
       console.error("Wystąpił błąd:", error);
       setFormErrors(["Wystąpił nieoczekiwany błąd."]);

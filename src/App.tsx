@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
-
-import "./App.css";
 import Sign from "./pages/SignInPage";
 import RegisterPage from "./pages/RegisterPage";
 import BranchesListPage from "./pages/owner/BranchesListPage";
 import AuthGuard from "./components/general/AuthGuard";
 import NewBranchInformationPage from "./pages/owner/NewBranchInformationPage";
 import NewBranchFormPage from "./pages/owner/NewBranchFormPage";
+import FormSummaryPage from "./pages/owner/FormSummaryPage";
 
 function App() {
   return (
@@ -29,6 +29,9 @@ function App() {
           </Route>
           <Route element={<AuthGuard allowedRoles={["owner"]} />}>
             <Route path="/form" element={<NewBranchFormPage />} />
+          </Route>
+          <Route element={<AuthGuard allowedRoles={["owner"]} />}>
+            <Route path="/summary" element={<FormSummaryPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
