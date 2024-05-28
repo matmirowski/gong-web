@@ -6,6 +6,7 @@ import Dropdown from "../general/Dropdown";
 import ImageUploadButton from "../general/ImageUploadButton";
 import useAuth from "../../hooks/useAuth";
 import PopUp from "../general/PopUp";
+import { convertKmToMeters } from "../../utils/distanceUtils";
 
 interface Category {
   id: number;
@@ -23,7 +24,8 @@ const NewBranchForm: React.FC = () => {
   const [image, setImage] = useState<string>("");
   const [lowerPriceRange, setLowerPriceRange] = useState<string>("");
   const [higherPriceRange, setHigherPriceRange] = useState<string>("");
-  const [distanceFromUniversity, setDistanceFromUniversity] = useState<string>("");
+  const [distanceFromUniversity, setDistanceFromUniversity] =
+    useState<string>("");
   const [categoryId, setCategoryId] = useState<number>(0);
   const [openingTime, setOpeningTime] = useState<string>("");
   const [closingTime, setClosingTime] = useState<string>("");
@@ -44,6 +46,11 @@ const NewBranchForm: React.FC = () => {
     return regex.test(input);
   };
 
+   const validateFloatNumber = (input: string): boolean => {
+    const regex = /^\d+(\.\d+)?$/;
+    return regex.test(input);
+  };
+
   const validateForm = (): string[] => {
     const errors: string[] = [];
     if (!name) errors.push("Nazwa lokalizacji jest wymagana.\n");
@@ -52,13 +59,13 @@ const NewBranchForm: React.FC = () => {
     if (!city) errors.push("Miejscowość jest wymagana.\n");
     if (!street) errors.push("Ulica jest wymagana.\n");
     if (!buildingNumber || !validateIsNumber(buildingNumber)) errors.push("Numer budynku jest wymagany i powinien być liczbą.\n");
-    if (!distanceFromUniversity || !validateIsNumber(distanceFromUniversity)) errors.push("Odległość od Politechniki jest wymagana i powinna być liczbą.\n");
+    if (!distanceFromUniversity || !validateFloatNumber(distanceFromUniversity)) errors.push("Odległość od Politechniki jest wymagana i powinna być liczbą.\n");
     if (!phoneNumber) errors.push("Numer kontaktowy jest wymagany.\n");
     if (!validatePhoneNumber(phoneNumber)) errors.push("Numer kontaktowy jest nieprawidłowy. Powinien zawierać 9 cyfr.\n");
     if (!image) errors.push("Zdjęcie lokalizacji jest wymagane.\n");
     if (!openingTime) errors.push("Godzina otwarcia jest wymagana.\n");
     if (!closingTime) errors.push("Godzina zamknięcia jest wymagana.\n");
-    if (!lowerPriceRange || !validateIsNumber(lowerPriceRange) || parseFloat(lowerPriceRange) <= 0) errors.push("Dolny zakres cen musi być większy od 0 i powinien być liczbą.\n");
+    if (!lowerPriceRange || !validateIsNumber(lowerPriceRange) || parseFloat(lowerPriceRange) <= 0)errors.push("Dolny zakres cen musi być większy od 0 i powinien być liczbą.\n");
     if (!higherPriceRange || !validateIsNumber(higherPriceRange) || parseFloat(higherPriceRange) <= 0) errors.push("Górny zakres cen musi być większy od 0 i powinien być liczbą.\n");
     if (parseFloat(lowerPriceRange) > parseFloat(higherPriceRange)) errors.push("Dolny zakres cen nie może być większy od górnego.\n");
     if (!categoryId) errors.push("Wybór kategorii jest wymagany.\n");
@@ -82,9 +89,9 @@ const NewBranchForm: React.FC = () => {
       buildingNumber: parseInt(buildingNumber),
       phoneNumber,
       image,
-      lowerPriceRange: parseFloat(lowerPriceRange),
-      higherPriceRange: parseFloat(higherPriceRange),
-      distanceFromUniversity: parseFloat(distanceFromUniversity),
+      lowerPriceRange: parseInt(lowerPriceRange),
+      higherPriceRange: parseInt(higherPriceRange),
+      distanceFromUniversity: convertKmToMeters(distanceFromUniversity),
       categoryId,
       openingTime,
       closingTime,
@@ -204,7 +211,7 @@ const NewBranchForm: React.FC = () => {
       </div>
       <ImageUploadButton onImageUpload={setImage} />
       <InputField
-        text="Odległość od Politechniki Łódzkiej"
+        text="Odległość od Politechniki Łódzkiej (km)"
         onChange={(value) => setDistanceFromUniversity(value)}
         width={685}
         height={90}
@@ -274,6 +281,8 @@ const NewBranchForm: React.FC = () => {
           headline="Formularz zawiera błędy. Proszę poprawić poniższe pola:"
           message={popUpMessage}
           onClose={closePopUp}
+          color="text-red-500"
+          progressBarColor="bg-red-500"
         />
       )}
     </div>

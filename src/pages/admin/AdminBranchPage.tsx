@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Icon from "../../components/general/Icon";
 import SizeableBox from "../../components/general/SizeableBox";
 import PopUp from "../../components/general/PopUp";
+import { convertMetersToKm } from "../../utils/distanceUtils";
 
 export type BranchStatus = "active" | "rejected" | "pending";
 
@@ -190,7 +191,7 @@ const AdminBranchPage: React.FC = () => {
                     <Icon name="icon-city" size={24} />
                     <span className="font-extrabold">
                       Odległość od Politechniki Łódzkiej:{" "}
-                      {branch.address.distanceFromUniversity} km
+                      {convertMetersToKm(branch.address.distanceFromUniversity)} km
                     </span>
                   </div>
                 </div>
