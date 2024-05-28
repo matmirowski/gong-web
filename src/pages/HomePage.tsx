@@ -33,7 +33,7 @@ const HomePage = () => {
                 height="75"
                 fontSize="24px"
               >
-                <Link to="/">
+                <Link to="/information">
                   Dodaj nowe <br></br>zgłoszenie
                 </Link>
               </Button>
