@@ -244,7 +244,13 @@ const AdminBranchPage: React.FC = () => {
           )}
         </div>
         {showPopUp && (
-          <PopUp headline={popUpMessage} message="" onClose={closePopUp} />
+          <PopUp
+            headline={popUpMessage}
+            message=""
+            onClose={closePopUp}
+            color="text-green-500"
+            progressBarColor="bg-green-500"
+          />
         )}
       </SizeableBox>
     </>
