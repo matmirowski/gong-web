@@ -54,10 +54,14 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                       <div className="text-black text-lg font-extrabold">{item.address.city}</div>
                     </div>
                     {userRole === 'owner' ? (
-                      <div className="flex space-x-10">
-                        <Icon withBorder={true} name="icon-discount" size={60} />
-                        <Icon withBorder={true} name="icon-camera" size={60} />
-                      </div>
+                      cat.category === 'Aktywne' ? (
+                        <div className="flex space-x-10">
+                          <Link to={`/owner/branches/coupons/${item.id}`} style={{ cursor: 'pointer' }}>
+                            <Icon withBorder={true} name="icon-discount" size={60} />
+                          </Link>
+                          <Icon withBorder={true} name="icon-camera" size={60} />
+                        </div>
+                      ) : null
                     ) : (
                       <Link to={`/admin/branches/${item.id}`}>
                       <svg 
@@ -66,7 +70,7 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                         height="80" 
                         viewBox="0 0 80 80" 
                         fill="none"
-                        style={{ cursor: 'pointer' }} // Add cursor pointer
+                        style={{ cursor: 'pointer' }}
                       >
                         <rect width="80" height="80" rx="10" fill="#1E56A0"/>
                         <rect x="5" y="5" width="70" height="70" rx="5" fill="white"/>
