@@ -9,6 +9,8 @@ import AuthGuard from "./components/general/AuthGuard";
 import NewBranchInformationPage from "./pages/owner/NewBranchInformationPage";
 import NewBranchFormPage from "./pages/owner/NewBranchFormPage";
 import FormSummaryPage from "./pages/owner/FormSummaryPage";
+import AdminBranchPage from "./pages/admin/AdminBranchPage";
+import AdminBranchesPage from "./pages/admin/AdminBranchesPage";
 
 function App() {
   return (
@@ -16,22 +18,18 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route element={<AuthGuard allowedRoles={["owner"]} />}>
-            <Route path="/home" element={<HomePage />} />
-          </Route>
           <Route path="/sign" element={<Sign />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route element={<AuthGuard allowedRoles={["owner"]} />}>
+            <Route path="/home" element={<HomePage />} />
             <Route path="/owner/branches" element={<BranchesListPage />} />
-          </Route>
-          <Route element={<AuthGuard allowedRoles={["owner"]} />}>
             <Route path="/information" element={<NewBranchInformationPage />} />
-          </Route>
-          <Route element={<AuthGuard allowedRoles={["owner"]} />}>
             <Route path="/form" element={<NewBranchFormPage />} />
-          </Route>
-          <Route element={<AuthGuard allowedRoles={["owner"]} />}>
             <Route path="/summary" element={<FormSummaryPage />} />
+          </Route>
+          <Route element={<AuthGuard allowedRoles={["admin"]} />}>
+            <Route path="/admin/branches" element={<AdminBranchesPage />} />
+            <Route path="/admin/branches/:branchId" element={<AdminBranchPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
