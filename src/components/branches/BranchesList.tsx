@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Icon from '../general/Icon';
+import useAuth from '../../hooks/useAuth';
 
 interface Item {
   name: string;
@@ -17,6 +18,7 @@ interface BranchesListProps {
 
 const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
   const [activeCategory, setActiveCategory] = useState<string | null>(categories[0].category);
+  const { userRole } = useAuth();
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -44,10 +46,23 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                       <div className="text-black text-3xl font-extrabold font-proxima-nova">{item.name}</div>
                       <div className="text-black text-lg font-extrabold">{item.address}</div>
                     </div>
-                    <div className="flex space-x-10">
-                      <Icon withBorder={true} name="icon-discount" size={60} />
-                      <Icon withBorder={true} name="icon-camera" size={60} />
-                    </div>
+                    {userRole === 'owner' ? (
+                      <div className="flex space-x-10">
+                        <Icon withBorder={true} name="icon-discount" size={60} />
+                        <Icon withBorder={true} name="icon-camera" size={60} />
+                      </div>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+<rect width="80" height="80" rx="10" fill="#1E56A0"/>
+<rect x="5" y="5" width="70" height="70" rx="5" fill="white"/>
+<circle cx="20" cy="60" r="5" fill="#163172"/>
+<circle cx="20" cy="40" r="5" fill="#163172"/>
+<circle cx="20" cy="22" r="5" fill="#163172"/>
+<rect x="35" y="18" width="31" height="9" rx="3" fill="#163172"/>
+<rect x="35" y="54" width="31" height="9" rx="3" fill="#163172"/>
+<rect x="35" y="36" width="31" height="9" rx="3" fill="#163172"/>
+</svg>
+                    )}
                   </div>
                 ))}
               </div>
