@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import InputField from '../../components/general/InputField'; // Adjust the path if needed
-import Button, { ButtonState } from '../../components/general/Button'; // Adjust the path if needed
-import Box from '../../components/general/Box'; // Adjust the path if needed
-import Navbar from '../../components/general/Navbar'; // Adjust the path if needed
-import PopUp from '../../components/general/PopUp'; // Adjust the path if needed
+import InputField from '../../components/general/InputField';
+import Button, { ButtonState } from '../../components/general/Button';
+import Box from '../../components/general/Box';
+import Navbar from '../../components/general/Navbar';
+import PopUp from '../../components/general/PopUp';
 
 const NewCouponPage: React.FC = () => {
   const { branchId } = useParams<{ branchId: string }>();
