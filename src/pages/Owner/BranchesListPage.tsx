@@ -62,24 +62,27 @@ const BranchesListPage: React.FC = () => {
   const categories = [
     {
       category: 'Aktywne',
-      items: activeBranches.map(branch => ({
-        name: branch.name,
-        address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
-      }))
+      // items: activeBranches.map(branch => ({
+      //   name: branch.name,
+      //   address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
+      // }))
+      items: activeBranches,
     },
     {
       category: 'Oczekujace',
-      items: pendingBranches.map(branch => ({
-        name: branch.name,
-        address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
-      }))
+      // items: pendingBranches.map(branch => ({
+      //   name: branch.name,
+      //   address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
+      // }))
+      items: pendingBranches,
     },
     {
       category: 'Odrzucone',
-      items: rejectedBranches.map(branch => ({
-        name: branch.name,
-        address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
-      }))
+      // items: rejectedBranches.map(branch => ({
+      //   name: branch.name,
+      //   address: `${branch.address.street}, ${branch.address.city}, Building No. ${branch.address.buildingNumber}`
+      // }))
+      items: rejectedBranches,
     }
   ];
 

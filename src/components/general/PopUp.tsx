@@ -6,10 +6,18 @@ import Icon from "./Icon";
 interface PopUpProps {
   headline: string;
   message: string;
+  color: string;
+  progressBarColor: string;
   onClose: () => void;
 }
 
-const PopUp: React.FC<PopUpProps> = ({ headline, message, onClose }) => {
+const PopUp: React.FC<PopUpProps> = ({ 
+  headline, 
+  message, 
+  color,
+  progressBarColor,
+  onClose 
+}) => {
   const [progress, setProgress] = useState(100);
 
   useEffect(() => {
@@ -40,7 +48,7 @@ const PopUp: React.FC<PopUpProps> = ({ headline, message, onClose }) => {
   const formatMessage = (msg: string) => {
     return msg.split('\n').map((line, index) => (
       <div key={index}>
-        <span className="text-red-500">*</span> {line}
+        <span className={color}>*</span> {line}
       </div>
     ));
   };
@@ -51,7 +59,7 @@ const PopUp: React.FC<PopUpProps> = ({ headline, message, onClose }) => {
       <div className="bg-white p-8 rounded-[50px] shadow-lg relative w-[425px] z-50 text-center">
         <div className="flex justify-between items-center mb-4">
           <Icon name="logo-black" size={75} />
-          <button onClick={onClose} className="text-5xl text-red-500">
+          <button onClick={onClose} className={`text-5xl ${color}`}>
             <FontAwesomeIcon icon={faXmarkCircle} />
           </button>
         </div>
@@ -63,7 +71,7 @@ const PopUp: React.FC<PopUpProps> = ({ headline, message, onClose }) => {
         </pre>
         <div className="w-full mt-4">
           <div
-            className="h-1 bg-red-500 rounded-full transition-all duration-100"
+            className={`h-1 ${progressBarColor} rounded-full transition-all duration-100`}
             style={{ width: `${progress}%` }}
           ></div>
         </div>
