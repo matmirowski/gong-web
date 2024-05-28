@@ -1,5 +1,3 @@
-// TO DO: Resize images to a smaller size if they're too large, for instance resize to 100px by 100px.
-
 import { useState } from 'react';
 import { convertToBase64 } from '../utils/imageUtils';
 

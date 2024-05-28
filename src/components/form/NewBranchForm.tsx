@@ -1,5 +1,3 @@
-// TO DO: Form validation
-
 import React, { useState, useEffect } from "react";
 import InputField from "../general/InputField";
 import Button, { ButtonState } from "../general/Button";
@@ -7,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Dropdown from "../general/Dropdown";
 import ImageUploadButton from "../general/ImageUploadButton";
 import useAuth from "../../hooks/useAuth";
+import PopUp from "../general/PopUp";
 
 interface Category {
   id: number;
@@ -19,40 +18,77 @@ const NewBranchForm: React.FC = () => {
   const [description, setDescription] = useState<string>("");
   const [street, setStreet] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const [buildingNumber, setBuildingNumber] = useState<number>(0);
+  const [buildingNumber, setBuildingNumber] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [image, setImage] = useState<string>("");
-  const [lowerPriceRange, setLowerPriceRange] = useState<number>(0);
-  const [higherPriceRange, setHigherPriceRange] = useState<number>(0);
-  const [distanceFromUniversity, setDistanceFromUniversity] = useState<number>(0);
+  const [lowerPriceRange, setLowerPriceRange] = useState<string>("");
+  const [higherPriceRange, setHigherPriceRange] = useState<string>("");
+  const [distanceFromUniversity, setDistanceFromUniversity] = useState<string>("");
   const [categoryId, setCategoryId] = useState<number>(0);
   const [openingTime, setOpeningTime] = useState<string>("");
   const [closingTime, setClosingTime] = useState<string>("");
   const [categories, setCategories] = useState<Category[]>([]);
   const { userId, token } = useAuth();
-  const [formErrors, setFormErrors] = useState<string[]>([]);
+  const [showPopUp, setShowPopUp] = useState<boolean>(false);
+  const [popUpMessage, setPopUpMessage] = useState<string>("");
 
   const navigate = useNavigate();
 
+  const validatePhoneNumber = (input: string): boolean => {
+    const regex = /^\s*\d{9}\s*$/;
+    return regex.test(input);
+  };
+
+  const validateIsNumber = (input: string): boolean => {
+    const regex = /^\d+$/;
+    return regex.test(input);
+  };
+
+  const validateForm = (): string[] => {
+    const errors: string[] = [];
+    if (!name) errors.push("Nazwa lokalizacji jest wymagana.\n");
+    if (!slogan) errors.push("Hasło reklamowe jest wymagane.\n");
+    if (!description) errors.push("Opis lokalizacji jest wymagany.\n");
+    if (!city) errors.push("Miejscowość jest wymagana.\n");
+    if (!street) errors.push("Ulica jest wymagana.\n");
+    if (!buildingNumber || !validateIsNumber(buildingNumber)) errors.push("Numer budynku jest wymagany i powinien być liczbą.\n");
+    if (!distanceFromUniversity || !validateIsNumber(distanceFromUniversity)) errors.push("Odległość od Politechniki jest wymagana i powinna być liczbą.\n");
+    if (!phoneNumber) errors.push("Numer kontaktowy jest wymagany.\n");
+    if (!validatePhoneNumber(phoneNumber)) errors.push("Numer kontaktowy jest nieprawidłowy. Powinien zawierać 9 cyfr.\n");
+    if (!image) errors.push("Zdjęcie lokalizacji jest wymagane.\n");
+    if (!openingTime) errors.push("Godzina otwarcia jest wymagana.\n");
+    if (!closingTime) errors.push("Godzina zamknięcia jest wymagana.\n");
+    if (!lowerPriceRange || !validateIsNumber(lowerPriceRange) || parseFloat(lowerPriceRange) <= 0) errors.push("Dolny zakres cen musi być większy od 0 i powinien być liczbą.\n");
+    if (!higherPriceRange || !validateIsNumber(higherPriceRange) || parseFloat(higherPriceRange) <= 0) errors.push("Górny zakres cen musi być większy od 0 i powinien być liczbą.\n");
+    if (parseFloat(lowerPriceRange) > parseFloat(higherPriceRange)) errors.push("Dolny zakres cen nie może być większy od górnego.\n");
+    if (!categoryId) errors.push("Wybór kategorii jest wymagany.\n");
+    return errors;
+  };
+
   const handleForm = async () => {
+    const errors = validateForm();
+    if (errors.length > 0) {
+      setPopUpMessage(errors.join(""));
+      setShowPopUp(true);
+      return;
+    }
+
     const formData = {
       name,
       slogan,
       description,
       street,
       city,
-      buildingNumber,
+      buildingNumber: parseInt(buildingNumber),
       phoneNumber,
       image,
-      lowerPriceRange,
-      higherPriceRange,
-      distanceFromUniversity,
+      lowerPriceRange: parseFloat(lowerPriceRange),
+      higherPriceRange: parseFloat(higherPriceRange),
+      distanceFromUniversity: parseFloat(distanceFromUniversity),
       categoryId,
       openingTime,
       closingTime,
     };
-
-    setFormErrors([]);
 
     try {
       const response = await fetch(
@@ -68,9 +104,9 @@ const NewBranchForm: React.FC = () => {
       );
 
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Nieudane przesłanie formularza:", errorText);
-        setFormErrors(["Nieudane przesłanie formularza: " + errorText]);
+        console.error("Nieudane przesłanie formularza");
+        setPopUpMessage("Nieudane przesłanie formularza.\n");
+        setShowPopUp(true);
         return;
       }
 
@@ -78,7 +114,8 @@ const NewBranchForm: React.FC = () => {
       navigate("/summary");
     } catch (error) {
       console.error("Wystąpił błąd:", error);
-      setFormErrors(["Wystąpił nieoczekiwany błąd."]);
+      setPopUpMessage("Wystąpił nieoczekiwany błąd.\n");
+      setShowPopUp(true);
     }
   };
 
@@ -109,6 +146,10 @@ const NewBranchForm: React.FC = () => {
     }
   };
 
+  const closePopUp = () => {
+    setShowPopUp(false);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center py-8 px-4 space-y-6">
       <p className="text-xl font-bold text-black text-center">
@@ -116,15 +157,6 @@ const NewBranchForm: React.FC = () => {
         <br />w formularzu zgłoszeniowym.
       </p>
       <div className="bg-black h-0.5 w-full my-3"></div>
-      {formErrors.length > 0 && (
-        <div className="text-red-500">
-          <ul>
-            {formErrors.map((error, index) => (
-              <li key={index}>{error}</li>
-            ))}
-          </ul>
-        </div>
-      )}
       <InputField
         text="Nazwa lokalizacji"
         onChange={setName}
@@ -133,14 +165,14 @@ const NewBranchForm: React.FC = () => {
         required={true}
       />
       <InputField
-        text="Haslo reklamowe"
+        text="Slogan reklamowy"
         onChange={setSlogan}
         width={685}
         height={90}
         required={true}
       />
       <InputField
-        text="Opis lokalizacji"
+        text="Szczegółowy opis"
         onChange={setDescription}
         width={685}
         height={200}
@@ -164,7 +196,7 @@ const NewBranchForm: React.FC = () => {
         />
         <InputField
           text="Numer budynku"
-          onChange={(value) => setBuildingNumber(parseInt(value))}
+          onChange={(value) => setBuildingNumber(value)}
           width={300}
           height={90}
           required={true}
@@ -172,8 +204,8 @@ const NewBranchForm: React.FC = () => {
       </div>
       <ImageUploadButton onImageUpload={setImage} />
       <InputField
-        text="Odległość od Politechniki"
-        onChange={(value) => setDistanceFromUniversity(parseFloat(value))}
+        text="Odległość od Politechniki Łódzkiej"
+        onChange={(value) => setDistanceFromUniversity(value)}
         width={685}
         height={90}
         required={true}
@@ -210,14 +242,14 @@ const NewBranchForm: React.FC = () => {
       <div className="flex w-full justify-center">
         <InputField
           text="Od"
-          onChange={(value) => setLowerPriceRange(parseFloat(value))}
+          onChange={(value) => setLowerPriceRange(value)}
           width={300}
           height={90}
           required={true}
         />
         <InputField
           text="Do"
-          onChange={(value) => setHigherPriceRange(parseFloat(value))}
+          onChange={(value) => setHigherPriceRange(value)}
           width={300}
           height={90}
           required={true}
@@ -231,13 +263,19 @@ const NewBranchForm: React.FC = () => {
       <Button
         onClick={handleForm}
         state={ButtonState.Active}
-        className="mt-4"
         width="430"
         height="75"
         fontSize="32px"
       >
         Potwierdź zgłoszenie
       </Button>
+      {showPopUp && (
+        <PopUp
+          headline="Formularz zawiera błędy. Proszę poprawić poniższe pola:"
+          message={popUpMessage}
+          onClose={closePopUp}
+        />
+      )}
     </div>
   );
 };
