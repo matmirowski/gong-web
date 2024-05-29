@@ -8,13 +8,13 @@ https://github.com/matmirowski/gong-backend
 `npm start`
 
 # Project Structure
-src/components: Contains React components.
-src/pages: Contains page components.
-src/hooks: Contains custom hooks.
-src/resources: Contains images and icons resources
-src/utils: Contains utility functions.
+1. src/components: Contains React components.
+2. src/pages: Contains page components.
+3. src/hooks: Contains custom hooks.
+4. src/resources: Contains images and icons resources
+5. src/utils: Contains utility functions.
 
 # Accounts:
-login: szymon password: Szymon123! role: admin
-login: mateusz password: Mateusz123! role: owner
-login: kacper password: Kacper123! role: owner
+1. login: szymon password: Szymon123! role: admin
+2. login: mateusz password: Mateusz123! role: owner
+3. login: kacper password: Kacper123! role: owner
