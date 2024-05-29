@@ -55,8 +55,8 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                     </div>
                     {userRole === 'owner' ? (
                       <div className="flex space-x-10">
-                        <Icon withBorder={true} name="icon-discount" size={60} />
-                        <Icon withBorder={true} name="icon-camera" size={60} />
+                       <Icon withBorder={true} name="icon-discount" size={60} />
+                       <Link to={`/owner/branches/details/${item.id}`}><Icon withBorder={true} name="icon-docs" size={60} /></Link>
                       </div>
                     ) : (
                       <Link to={`/admin/branches/${item.id}`}>
