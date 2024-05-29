@@ -11,6 +11,8 @@ import NewBranchFormPage from "./pages/owner/NewBranchFormPage";
 import FormSummaryPage from "./pages/owner/FormSummaryPage";
 import AdminBranchPage from "./pages/admin/AdminBranchPage";
 import AdminBranchesPage from "./pages/admin/AdminBranchesPage";
+import OwnerBranchPage from "./pages/owner/OwnerBranchPage";
+import EditBranchPage from "./pages/owner/EditBranchPage";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/information" element={<NewBranchInformationPage />} />
             <Route path="/form" element={<NewBranchFormPage />} />
             <Route path="/summary" element={<FormSummaryPage />} />
+            <Route path="/owner/branches/details/:branchId" element={<OwnerBranchPage />} />
+            <Route path="/owner/branches/details/edit/:branchId" element={<EditBranchPage />} />
           </Route>
           <Route element={<AuthGuard allowedRoles={["admin"]} />}>
             <Route path="/admin/branches" element={<AdminBranchesPage />} />
