@@ -36,6 +36,7 @@ function App() {
             <Route path="/owner/branches/details/edit/:branchId" element={<EditBranchPage />} />
           </Route>
           <Route element={<AuthGuard allowedRoles={["admin"]} />}>
+            <Route path="/admin/branches/coupons/:branchId" element={<CouponsPage />} />
             <Route path="/admin/branches" element={<AdminBranchesPage />} />
             <Route path="/admin/branches/:branchId" element={<AdminBranchPage />} />
           </Route>

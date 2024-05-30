@@ -81,6 +81,10 @@ const AdminBranchesPage: React.FC = () => {
   return (
     <>
       <Navbar>
+      <Link to={'/home'}>
+        <Button onClick={function (): void {
+          } } state={ButtonState.Active}  width='136' height='35'>Home</Button>  
+      </Link>
         <Button onClick={() => {
           console.log('Logging out...');
           localStorage.removeItem('jwtToken');

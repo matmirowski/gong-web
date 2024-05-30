@@ -87,6 +87,13 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
             </Link>
           </div>
         )}
+        {userRole === 'admin' && (
+          <div className="flex justify-center mt-4 space-x-4">
+            <Link to={`/admin/branches/${branchId}`}>
+              <Button width='200' onClick={function (): void { } } state={ButtonState.Active}>Wroc</Button>
+            </Link>
+          </div>
+        )}
       </div>
       
       {popUp.show && (
