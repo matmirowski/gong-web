@@ -210,14 +210,16 @@ const AdminBranchPage: React.FC = () => {
                 </div>
               </div>
               <div className="flex justify-center space-x-4 mt-6 w-full">
+                <Link to={`/admin/branches/coupons/${branchId}`}>
                 <Button
                   state={ButtonState.Active}
                   width="200"
                   height="50"
                   onClick={() => {}}
                 >
-                  <Link to="/discount-codes">PRZEGLĄDAJ KODY RABATOWE</Link>
+                  PRZEGLĄDAJ KODY RABATOWE
                 </Button>
+                </Link>
                 {branch.status === "pending" && (
                   <>
                     <Button

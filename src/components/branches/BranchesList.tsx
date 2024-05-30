@@ -62,7 +62,7 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                           <Link to={`/owner/branches/details/${item.id}`}><Icon withBorder={true} name="icon-docs" size={60} /></Link>
                         </div>
                       ) :
-                        ( 
+                        (
                           <Link to={`/owner/branches/details/${item.id}`}><Icon withBorder={true} name="icon-docs" size={60} /></Link>
                          )
                   ) : (
