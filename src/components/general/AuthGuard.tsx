@@ -1,4 +1,3 @@
-// src/components/AuthGuard.tsx
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
@@ -16,7 +15,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ allowedRoles }) => {
   console.log('AuthGuard - loading:', loading);
 
   if (loading) {
-    return <div>Loading...</div>; // Or any loading indicator
+    return <div>Loading...</div>;
   }
 
   if (!isLoggedIn) {

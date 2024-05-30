@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 interface InputFieldProps {
     text: string;
-    secret?: boolean; // Note: Multiline will not be applicable when `secret` is true
+    secret?: boolean;
     multiline?: boolean;
     onChange: (value: string) => void;
     width?: number;

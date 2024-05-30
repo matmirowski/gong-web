@@ -16,6 +16,17 @@ const NewCouponPage: React.FC = () => {
 
   const handleAddCoupon = async () => {
     try {
+      const errors: string[] = [];
+      if (title === '') {
+        errors.push("Tytul jest pusty!\n");
+      }
+      if (description === '') {
+        errors.push("Opis jest pusty!");
+      }
+      if (errors.length > 0) {
+        setPopup({show: true, message: errors.join(""),isError: true});
+        return;
+      }
       const response = await fetch(`http://localhost:3030/branches/${branchId}/coupons`, {
         method: 'POST',
         headers: {
@@ -29,12 +40,12 @@ const NewCouponPage: React.FC = () => {
       });
 
       if (response.ok) {
-        setPopup({ show: true, message: 'Coupon added!', isError: false });
+        setPopup({ show: true, message: 'Dodano kupon !', isError: false });
       } else {
-        setPopup({ show: true, message: 'Error adding coupon: ' + (await response.text()), isError: true });
+        setPopup({ show: true, message: 'Błąd podczas dodawania kuponu: ' + (await response.text()), isError: true });
       }
     } catch (error) {
-      setPopup({ show: true, message: 'Error adding coupon: ', isError: true });
+      setPopup({ show: true, message: 'Błąd podczas dodawania kuponu ! ', isError: true });
     }
   };
 
@@ -46,6 +57,13 @@ const NewCouponPage: React.FC = () => {
             Home
           </Button>
         </Link>
+        <Button onClick={() => {
+          console.log('Logging out...');
+          localStorage.removeItem('jwtToken');
+          window.location.reload();
+        }} state={ButtonState.Active} width='136' height='35'>
+          <Link to="/">Wyloguj</Link>
+        </Button>
       </Navbar>
       <Box>
         <div className="flex flex-col items-center justify-center p-4">
@@ -68,16 +86,27 @@ const NewCouponPage: React.FC = () => {
             required={true}
           />
           <div className='bg-black my-2'></div>
+          <div className="flex justify-center mt-4 space-x-4">
+          <Link to={`/owner/branches/coupons/${branchId}`}>
+              <Button 
+              className="mt-4"
+              width="180"
+              height="55"
+              fontSize="28px"
+              onClick={function (): void { } } 
+              state={ButtonState.Active}>Wroc</Button>
+            </Link>
           <Button
-            onClick={handleAddCoupon}
-            state={ButtonState.Active}
+            onClick={ title === '' || description === '' ? ()=>{setPopup({ show: true, message: 'Uzupelnij dane', isError: true });} : handleAddCoupon}
+            state={ title === '' || description === '' ?  ButtonState.Unactive : ButtonState.Active}
             className="mt-4"
-            width="250"
+            width="180"
             height="55"
             fontSize="28px"
           >
             Dodaj
           </Button>
+          </div>
         </div>
       </Box>
       {popup.show && (

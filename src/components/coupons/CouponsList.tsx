@@ -40,7 +40,7 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
         setCouponList(couponList.filter(coupon => coupon.id !== couponId));
         setPopUp({
           show: true,
-          message: 'Coupon deleted successfully.',
+          message: 'Usunieto Kupon !.',
           color: 'text-green-500',
           progressBarColor: 'bg-green-500'
         });
@@ -50,11 +50,11 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
     } catch (error) {
       setPopUp({
         show: true,
-        message: 'Error deleting coupon:\n' + error,
+        message: 'Błąd podczas usuwania kuponu:\n' + error,
         color: 'text-red-500',
         progressBarColor: 'bg-red-500'
       });
-      console.error('Error deleting coupon:', error);
+      console.error('Błąd podczas usuwania kuponu:', error);
     }
   };
 
@@ -70,7 +70,7 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
                 <div className="text-black text-lg font-extrabold">{coupon.description}</div>
               </div>
               {userRole === 'owner' && (
-                <div className="flex space-x-10">
+                <div className="flex space-x-10" style={{ cursor: 'pointer' }}>
                   <Icon withBorder={true} name="icon-close" size={60} onClick={() => handleDelete(coupon.id)} />
                 </div>
               )}
@@ -78,9 +78,12 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
           ))}
         </div>
         {userRole === 'owner' && (
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center mt-4 space-x-4">
+            <Link to={`/owner/branches`}>
+              <Button width='200' onClick={function (): void { } } state={ButtonState.Active}>Wroc</Button>
+            </Link>
             <Link to={`/owner/branches/coupons/${branchId}/new`}>
-              <Button onClick={function (): void { } } state={ButtonState.Active}>Nowy kupon</Button>
+              <Button width='200' onClick={function (): void { } } state={ButtonState.Active}>Dodaj</Button>
             </Link>
           </div>
         )}
@@ -88,7 +91,7 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
       
       {popUp.show && (
         <PopUp
-          headline="Notification"
+          headline='Kupon'
           message={popUp.message}
           color={popUp.color}
           progressBarColor={popUp.progressBarColor}

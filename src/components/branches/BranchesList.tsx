@@ -61,8 +61,11 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                           </Link>
                           <Icon withBorder={true} name="icon-camera" size={60} />
                         </div>
-                      ) : null
-                    ) : (
+                      ) :
+                        ( 
+                        <Icon withBorder={true} name="icon-camera" size={60} />
+                         )
+                  ) : (
                       <Link to={`/admin/branches/${item.id}`}>
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 

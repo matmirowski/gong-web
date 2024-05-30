@@ -22,10 +22,10 @@ const Icon: React.FC<IconProps> = ({ name, className, size = 24, withBorder = fa
     }
 
     const borderStyle = withBorder ? {
-        border: '5px solid #163172', // Adjust the border width and color directly using the hex value
-        borderRadius: '10%', // Adjust the border radius to make it rounded
-        padding: '5px', // Add padding to create space between the image and border
-        backgroundColor: 'white' // Add background color if needed
+        border: '5px solid #163172',
+        borderRadius: '10%',
+        padding: '5px',
+        backgroundColor: 'white'
     } : {};
 
     return (
@@ -33,7 +33,7 @@ const Icon: React.FC<IconProps> = ({ name, className, size = 24, withBorder = fa
             src={src}
             alt={name}
             className={className}
-            style={{ width: size, height: size, ...borderStyle }} // Merge styles
+            style={{ width: size, height: size, ...borderStyle }}
             onClick={onClick}
         />
     );
