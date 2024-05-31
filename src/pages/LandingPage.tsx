@@ -83,7 +83,7 @@ const LandingPage: React.FC = () => {
                         <Link to="/sign">Zaloguj</Link>
                     </Button>
                     <span className='font-bold mt-4'>
-                        <Link to="/sign">Nie posiadasz konta? Zarejestruj się!</Link>
+                        <Link to="/register">Nie posiadasz konta? Zarejestruj się!</Link>
                     </span>
                 </div>
                 <div className="flex items-center justify-center">
