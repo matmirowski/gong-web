@@ -81,17 +81,15 @@ const AdminBranchesPage: React.FC = () => {
   return (
     <>
       <Navbar>
-      <Link to={'/home'}>
-        <Button onClick={function (): void {
-          } } state={ButtonState.Active}  width='136' height='35'>Home</Button>  
-      </Link>
+      <Link to="/">
         <Button onClick={() => {
           console.log('Logging out...');
           localStorage.removeItem('jwtToken');
           window.location.reload();
         }} state={ButtonState.Active} width='136' height='35'>
-          <Link to="/">Wyloguj</Link>
+          Wyloguj
         </Button>
+        </Link>
       </Navbar>
       <BranchesList categories={categories} />
     </>

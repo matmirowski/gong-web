@@ -121,15 +121,14 @@ const AdminBranchPage: React.FC = () => {
   return (
     <>
       <Navbar>
-        <Button
-          onClick={() => console.log("Navigating to home...")}
-          state={ButtonState.Active}
+        <Link to="/home">
+          <Button onClick={()=>null} state={ButtonState.Active} 
           width="136"
-          height="35"
-          fontSize="12px"
-        >
-          <Link to="/admin/branches">Panel admina</Link>
-        </Button>
+          height="35">
+            Główna
+          </Button>
+        </Link>
+        <Link to="/">
         <Button
           onClick={() => {
             console.log("Logging out...");
@@ -140,8 +139,9 @@ const AdminBranchPage: React.FC = () => {
           width="136"
           height="35"
         >
-          <Link to="/">Wyloguj</Link>
+          Wyloguj
         </Button>
+        </Link>
       </Navbar>
       <SizeableBox>
         <div className="flex flex-col items-center justify-between h-full p-6">

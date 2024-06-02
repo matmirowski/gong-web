@@ -65,15 +65,17 @@ const OwnerBranchPage: React.FC = () => {
   return (
     <>
       <Navbar>
+      <Link to="/home">
         <Button
           onClick={() => console.log("Navigating to owner...")}
           state={ButtonState.Active}
           width="136"
           height="35"
-          fontSize="12px"
         >
-          <Link to="/home">Strona główna</Link>
+            Główna
         </Button>
+        </Link>
+        <Link to="/">
         <Button
           onClick={() => {
             console.log("Logging out...");
@@ -84,8 +86,9 @@ const OwnerBranchPage: React.FC = () => {
           width="136"
           height="35"
         >
-          <Link to="/">Wyloguj</Link>
+            Wyloguj
         </Button>
+        </Link>
       </Navbar>
       <SizeableBox>
         <div className="flex flex-col items-center justify-between h-full p-6">
@@ -157,6 +160,7 @@ const OwnerBranchPage: React.FC = () => {
               <div className="flex justify-center space-x-4 mt-6 w-full">
                 {branch.status === "active" && (
                   <>
+                      <Link to={`/owner/branches/details/edit/${branchId}`}>
                     <Button
                       state={ButtonState.Active}
                       width="400"
@@ -164,10 +168,9 @@ const OwnerBranchPage: React.FC = () => {
                       fontSize="32px"
                       onClick={() => () => console.log("Navigating...")}
                     >
-                      <Link to={`/owner/branches/details/edit/${branchId}`}>
                         EDYTUJ ZGŁOSZENIE
-                      </Link>
                     </Button>
+                    </Link>
                   </>
                 )}
               </div>

@@ -9,10 +9,17 @@ const Sign = () => {
     return (
         <>
             <Navbar>
-                    <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
-                        <Link to="/register">Zarejestruj</Link>
-                    </Button>
-                </Navbar>
+                <Link to="/home">
+                <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
+                    Główna
+                </Button>
+                </Link>
+                <Link to="/register">
+                <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
+                    Zarejestruj
+                </Button>
+                </Link>
+            </Navbar>
             <Box>
                 <SignInForm/>
             </Box>

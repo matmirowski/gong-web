@@ -9,6 +9,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar>
+      <Link to="/">
         <Button
           onClick={() => {
             console.log("Logging out...");
@@ -19,13 +20,15 @@ const HomePage = () => {
           width="136"
           height="35"
         >
-          <Link to="/">Wyloguj</Link>
+          Wyloguj
         </Button>
+        </Link>
       </Navbar>
       <Box>
         <div className="grid grid-cols-2 items-center justify-center h-full">
           <div className="flex flex-col text-t-dark-blue font-proxima-nova text-bold items-center justify-center my-20">
             <span className="my-3.5">
+            <Link to="/information">
               <Button
                 onClick={() => console.log("Navigating...")}
                 state={ButtonState.Active}
@@ -33,12 +36,12 @@ const HomePage = () => {
                 height="75"
                 fontSize="24px"
               >
-                <Link to="/information">
-                  Dodaj nowe <br></br>zgłoszenie
-                </Link>
+                  Dodaj nowe zgłoszenie
               </Button>
+              </Link>
             </span>
             <span className="my-3.5">
+            <Link to="/owner/branches">
               <Button
                 onClick={() => console.log("Navigating...")}
                 state={ButtonState.Active}
@@ -46,10 +49,10 @@ const HomePage = () => {
                 height="75"
                 fontSize="24px"
               >
-                <Link to="/owner/branches">
-                  Zarządzaj <br></br>zgłoszeniami
-                </Link>
+                
+                  Zarządzaj zgłoszeniami
               </Button>
+              </Link>
             </span>
           </div>
           <div className="flex items-center justify-center">
