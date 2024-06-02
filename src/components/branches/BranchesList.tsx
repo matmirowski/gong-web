@@ -59,7 +59,12 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                           <Link to={`/owner/branches/coupons/${item.id}`} style={{ cursor: 'pointer' }}>
                             <Icon withBorder={true} name="icon-discount" size={60} />
                           </Link>
-                          <Link to={`/owner/branches/details/${item.id}`}><Icon withBorder={true} name="icon-docs" size={60} /></Link>
+                          <Link to={`/owner/branches/details/${item.id}`}>
+                            <Icon withBorder={true} name="icon-docs" size={60} />
+                          </Link>
+                          <Link to={`/owner/branches/coupons-verify/${item.id}`}>
+                            <Icon withBorder={true} name="icon-verify" size={60} />
+                          </Link>
                         </div>
                       ) :
                         (

@@ -51,17 +51,6 @@ const HomePage = () => {
                 </Link>
               </Button>
             </span>
-            <span className="my-3.5">
-              <Button
-                onClick={() => console.log("Navigating...")}
-                state={ButtonState.Active}
-                width="430"
-                height="75"
-                fontSize="24px"
-              >
-                <Link to="/">Weryfikuj kod rabatowy</Link>
-              </Button>
-            </span>
           </div>
           <div className="flex items-center justify-center">
             <img
