@@ -15,6 +15,7 @@ import CouponsPage from "./pages/owner/CouponsPage";
 import NewCouponPage from "./pages/owner/NewCouponPage";
 import OwnerBranchPage from "./pages/owner/OwnerBranchPage";
 import EditBranchPage from "./pages/owner/EditBranchPage";
+import Verify from "./pages/owner/Verify";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/owner/branches/coupons/:branchId/new" element={<NewCouponPage />} />
             <Route path="/owner/branches/details/:branchId" element={<OwnerBranchPage />} />
             <Route path="/owner/branches/details/edit/:branchId" element={<EditBranchPage />} />
+            <Route path="/owner/branches/coupons-verify/:branchId" element={<Verify />} />
           </Route>
           <Route element={<AuthGuard allowedRoles={["admin"]} />}>
             <Route path="/admin/branches/coupons/:branchId" element={<CouponsPage />} />
