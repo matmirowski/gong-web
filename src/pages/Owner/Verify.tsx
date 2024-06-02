@@ -97,7 +97,7 @@ const Verify = () => {
             <Box>
                 <div className="flex flex-col items-center justify-center p-4">
                     <div className='my-2' />
-                    <div className='text-3xl font-extrabold font-proxima-nova'>Zweryfikuj kod rabatowy</div>
+                    <div className='text-3xl text-button-light-blue font-extrabold font-proxima-nova'>Zweryfikuj kod rabatowy</div>
                     <div className='my-16' />
                     <InputField 
                         required={true} 
