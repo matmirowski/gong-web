@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputField from "../general/InputField";
 import Button, { ButtonState } from "../general/Button";
 import { useNavigate, useParams } from "react-router-dom";
-import SizeableBox from "../general/SizeableBox";
+import Box from "../general/Box";
 import useAuth from "../../hooks/useAuth";
 import PopUp from "../general/PopUp";
 
@@ -91,8 +91,8 @@ const EditBranchForm: React.FC = () => {
   };
 
   return (
-    <SizeableBox height="600px">
-      <div className="flex flex-col items-center justify-center">
+    <Box>
+      <div className="flex flex-col items-center justify-center p-4">
         <h1 className="text-button-light-blue font-black text-5xl text-center mb-4">
           Witaj w edytorze zgłoszeń!
         </h1>
@@ -135,7 +135,7 @@ const EditBranchForm: React.FC = () => {
           />
         )}
       </div>
-    </SizeableBox>
+    </Box>
   );
 };
 

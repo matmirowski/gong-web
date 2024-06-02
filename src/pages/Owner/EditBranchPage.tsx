@@ -13,22 +13,23 @@ const EditBranchPage = () => {
           state={ButtonState.Active}
           width="136"
           height="35"
-          fontSize="12px"
         >
-          <Link to="/home">Strona główna</Link>
+          <Link to="/home">Główna</Link>
         </Button>
-        <Button
-          onClick={() => {
-            console.log("Logging out...");
-            localStorage.removeItem("jwtToken");
-            window.location.reload();
-          }}
-          state={ButtonState.Active}
-          width="136"
-          height="35"
-        >
-          <Link to="/">Wyloguj</Link>
-        </Button>
+        <Link to="/">
+          <Button
+            onClick={() => {
+              console.log("Logging out...");
+              localStorage.removeItem("jwtToken");
+              window.location.reload();
+            }}
+            state={ButtonState.Active}
+            width="136"
+            height="35"
+          >
+            Wyloguj
+          </Button>
+        </Link>
       </Navbar>
       <EditBranchForm />
     </>
