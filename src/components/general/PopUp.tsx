@@ -55,7 +55,7 @@ const PopUp: React.FC<PopUpProps> = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 font-proxima-nova">
-      <div className="absolute inset-0 bg-gray-900 bg-opacity-30 z-40"></div>
+      <div className="absolute -inset-10 bg-gray-900 bg-opacity-30 z-40"></div>
       <div className="bg-white p-8 rounded-[50px] shadow-lg relative w-[425px] z-50 text-center">
         <div className="flex justify-between items-center mb-4">
           <Icon name="logo-black" size={75} />

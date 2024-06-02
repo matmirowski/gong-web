@@ -59,7 +59,7 @@ const NewBranchInformationPage = () => {
                   height="75"
                   fontSize="24px"
                 >
-                    Dodaj nowe <br></br>zgłoszenie
+                    Dodaj nowe zgłoszenie
                 </Button>
                 </Link>
               </span>
