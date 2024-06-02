@@ -28,6 +28,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
           onChange={handleChange}
           required={required}
           className="w-6 h-6 border-2 rounded-md appearance-none cursor-pointer border-button-dark-blue bg-transparent checked:bg-transparent relative"
+          title=""
         />
         {checked && (
           <div className="absolute inset-0 flex items-center justify-center pb-2">
