@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import Box from '../components/general/Box';
 import Button, { ButtonState } from '../components/general/Button';
@@ -16,7 +16,8 @@ export interface JwtPayload {
 const LandingPage: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [userRole, setUserRole] = useState<string>('');
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
         const token = localStorage.getItem('jwtToken');
         if (token && token.split('.').length === 3) {
@@ -29,12 +30,15 @@ const LandingPage: React.FC = () => {
                 } else {
                     localStorage.removeItem('jwtToken');
                 }
+                if (userRole === 'admin') {
+                    navigate('/admin/branches');
+                }
             } catch (error) {
                 console.error('Failed to decode token:', error);
                 localStorage.removeItem('jwtToken');
             }
         }
-    }, []);
+    }, [navigate, userRole]);
 
     return (
         <>
@@ -42,31 +46,41 @@ const LandingPage: React.FC = () => {
                 {isLoggedIn ? (
                     <>
                       {userRole === 'owner' && (
-                            <Button onClick={() => console.log('Navigating to owner...')} state={ButtonState.Active} width='136' height='35' fontSize='12px'>
-                                <Link to="/home">Strona główna</Link>
+                            <Link to="/home">
+                                <Button onClick={() => console.log('Navigating to owner...')} state={ButtonState.Active} width='136' height='35'>
+                                Główna
                             </Button>
+                            </Link>
                         )}
                         {userRole === 'admin' && (
-                            <Button onClick={() => console.log('Navigating to admin...')} state={ButtonState.Active} width='136' height='35' fontSize='12px'>
-                                <Link to="/admin/branches">Panel admina</Link>
+                            <Link to="/admin/branches">
+                                <Button onClick={() => console.log('Navigating to admin...')} state={ButtonState.Active} width='136' height='35'>
+                                Główna
                             </Button>
+                            </Link>
                         )}
-                        <Button onClick={() => {
+                        <Link to="/">
+                            <Button onClick={() => {
                             console.log('Logging out...');
                             localStorage.removeItem('jwtToken');
                             window.location.reload();
                         }} state={ButtonState.Active} width='136' height='35'>
-                            <Link to="/">Wyloguj</Link>
+                            Wyloguj
                         </Button>
+                        </Link>
                     </>
                 ) : (
                     <>
+                    <Link to="/sign">
                         <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
-                            <Link to="/sign">Zaloguj</Link>
+                            Zaloguj
                         </Button>
+                        </Link>
+                        <Link to="/register">
                         <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
-                            <Link to="/register">Zarejestruj</Link>
+                            Zarejestruj
                         </Button>
+                        </Link>
                     </>
                 )}
             </Navbar>
@@ -79,12 +93,13 @@ const LandingPage: React.FC = () => {
                     <p className="text-xl font-semibold m-4 text-center">
                     Promuj swoje miejsce i dotrzyj<br/>do tysięcy potencjalnych klientów
                     </p>
-                    <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='272' height='64' fontSize='32px'>
-                        <Link to="/sign">Zaloguj</Link>
-                    </Button>
-                    <span className='font-bold mt-4'>
+                    {!isLoggedIn && 
+                    <Link to="/sign"><Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='272' height='64' fontSize='32px'>
+                        Zaloguj
+                    </Button></Link>}
+                    {!isLoggedIn && <span className='font-bold mt-4'>
                         <Link to="/register">Nie posiadasz konta? Zarejestruj się!</Link>
-                    </span>
+                    </span>}
                 </div>
                 <div className="flex items-center justify-center">
                     <img

@@ -9,16 +9,18 @@ const NewBranchInformationPage = () => {
   return (
     <>
       <Navbar>
+      <Link to="/home">
         <Button
           onClick={() => console.log("Navigating to home...")}
           state={ButtonState.Active}
           width="136"
           height="35"
-          fontSize="12px"
         >
-          <Link to="/home">Strona główna</Link>
+          Główna
         </Button>
-        <Button
+        </Link>
+        <Link to="/">
+          <Button
           onClick={() => {
             console.log("Logging out...");
             localStorage.removeItem("jwtToken");
@@ -28,8 +30,9 @@ const NewBranchInformationPage = () => {
           width="136"
           height="35"
         >
-          <Link to="/">Wyloguj</Link>
+          Wyloguj
         </Button>
+        </Link>
       </Navbar>
       <Box>
         <div className="grid grid-cols-2 items-center justify-center h-full">
@@ -48,6 +51,7 @@ const NewBranchInformationPage = () => {
                 częścią naszej drużyny!
               </p>
               <span className="flex justify-center my-3.5">
+              <Link to="/form">
                 <Button
                   onClick={() => console.log("Navigating to form...")}
                   state={ButtonState.Active}
@@ -55,10 +59,9 @@ const NewBranchInformationPage = () => {
                   height="75"
                   fontSize="24px"
                 >
-                  <Link to="/form">
                     Dodaj nowe <br></br>zgłoszenie
-                  </Link>
                 </Button>
+                </Link>
               </span>
             </div>
           </div>

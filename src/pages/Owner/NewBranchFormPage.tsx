@@ -9,15 +9,17 @@ const NewBranchFormPage = () => {
   return (
     <>
       <Navbar>
+      <Link to="/home">
         <Button
           onClick={() => console.log("Navigating to home...")}
           state={ButtonState.Active}
           width="136"
           height="35"
-          fontSize="12px"
         >
-          <Link to="/home">Strona główna</Link>
+          Główna
         </Button>
+        </Link>
+        <Link to="/">
         <Button
           onClick={() => {
             console.log("Logging out...");
@@ -28,8 +30,9 @@ const NewBranchFormPage = () => {
           width="136"
           height="35"
         >
-          <Link to="/">Wyloguj</Link>
+          Wyloguj
         </Button>
+        </Link>
       </Navbar>
       <SizeableBox height="1800">
         <NewBranchForm/>

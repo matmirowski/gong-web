@@ -9,10 +9,17 @@ const RegisterPage = () => {
     return (
         <>
             <Navbar>
+                <Link to="/home">
                     <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
-                        <Link to="/sign">Zaloguj</Link>
+                        Główna
                     </Button>
-                </Navbar>
+                </Link>
+                <Link to="/sign">
+                    <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
+                        Zaloguj
+                    </Button>
+                </Link>
+            </Navbar>
             <Box>
                 <RegisterForm/>
             </Box>
