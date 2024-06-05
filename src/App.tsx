@@ -18,6 +18,7 @@ import OwnerBranchPage from "./pages/owner/OwnerBranchPage";
 import EditBranchPage from "./pages/owner/EditBranchPage";
 import Verify from "./pages/owner/Verify";
 import Icon from "./components/general/Icon";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -53,6 +54,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/sign" element={<Sign />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
             <Route element={<AuthGuard allowedRoles={["owner"]} />}>
               <Route path="/home" element={<HomePage />} />
               <Route path="/owner/branches" element={<BranchesListPage />} />
