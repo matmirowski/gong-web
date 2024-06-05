@@ -111,7 +111,7 @@ const SignInForm: React.FC = () => {
         height={90}
         required={true}
       />
-      <Link className="text-button-light-blue font-extrabold" to={"/register"}>
+      <Link className="text-button-light-blue font-extrabold underline" to={"/register"}>
         Nie posiadasz konta? Zarejestruj sie!
       </Link>
       <div className="bg-black my-11"></div>
