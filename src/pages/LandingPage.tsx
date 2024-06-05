@@ -43,6 +43,11 @@ const LandingPage: React.FC = () => {
     return (
         <>
             <Navbar>
+                <Link to="/about">
+                    <Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='136' height='35'>
+                        o nas
+                    </Button>
+                </Link>
                 {isLoggedIn ? (
                     <>
                       {userRole === 'owner' && (
@@ -87,8 +92,8 @@ const LandingPage: React.FC = () => {
             <Box>
             <div className="grid grid-cols-2 items-center justify-center h-full">
                 <div className="flex flex-col text-t-dark-blue font-proxima-nova items-center justify-center">
-                    <h2 className="text-3xl  font-black	 text-center">
-                    PRZEDSIĘBIORCO...<br/>STUDENT TEŻ MA <br/>PRAWO DO ZABAWY!
+                    <h2 className="text-4xl font-black text-center">
+                    ZWIĘKSZ ZASIĘG <br></br>TWOJEGO BIZNESU!
                     </h2>
                     <p className="text-xl font-semibold m-4 text-center">
                     Promuj swoje miejsce i dotrzyj<br/>do tysięcy potencjalnych klientów
@@ -97,7 +102,7 @@ const LandingPage: React.FC = () => {
                     <Link to="/sign"><Button onClick={() => console.log('Navigating...')} state={ButtonState.Active} width='272' height='64' fontSize='32px'>
                         Zaloguj
                     </Button></Link>}
-                    {!isLoggedIn && <span className='font-bold mt-4'>
+                    {!isLoggedIn && <span className='font-bold mt-4 underline'>
                         <Link to="/register">Nie posiadasz konta? Zarejestruj się!</Link>
                     </span>}
                 </div>
