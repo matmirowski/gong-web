@@ -73,31 +73,35 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
           Kupony
         </h1>
         <div className="p-5 rounded-lg mt-2 overflow-y-auto h-[450px]">
-          {couponList.map((coupon) => (
-            <div
-              key={coupon.id}
-              className="bg-white flex items-center justify-between p-4 mb-1 border rounded-lg shadow"
-            >
-              <div>
-                <div className="text-black text-3xl font-extrabold font-proxima-nova">
-                  {coupon.title}
+          {couponList.length === 0 ? (
+            <div className="text-black text-3xl font-extrabold font-proxima-nova">Brak kuponów w danej kategorii</div>
+          ) : (
+            couponList.map((coupon) => (
+              <div
+                key={coupon.id}
+                className="bg-white flex items-center justify-between p-4 mb-1 border rounded-lg shadow"
+              >
+                <div>
+                  <div className="text-black text-3xl font-extrabold font-proxima-nova">
+                    {coupon.title}
+                  </div>
+                  <div className="text-black text-lg font-extrabold">
+                    {coupon.description}
+                  </div>
                 </div>
-                <div className="text-black text-lg font-extrabold">
-                  {coupon.description}
-                </div>
-              </div>
-              {userRole === "owner" && (
-                <div title="Usuń kupon" className="flex space-x-10" style={{ cursor: "pointer" }}>
+                {userRole === "owner" && (
+                  <div title="Usuń kupon" className="flex space-x-10" style={{ cursor: "pointer" }}>
                     <Icon
                       withBorder={true}
                       name="icon-close"
                       size={60}
                       onClick={() => handleDelete(coupon.id)}
                     />
-                </div>
-              )}
-            </div>
-          ))}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
         </div>
         {userRole === "owner" && (
           <div className="flex justify-center mt-4 space-x-4">
