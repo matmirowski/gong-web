@@ -60,25 +60,35 @@ const RegisterForm: React.FC = () => {
       password: password,
     };
 
-    const response = await fetch("http://localhost:3030/users/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(registerData),
-    });
+    try {
+      const response = await fetch("http://localhost:3030/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registerData),
+      });
 
-    if (response.ok) {
-      setPopUpHeadline("Rejestracja zakończona sukcesem");
-      setPopUpMessage("");
-      setPopUpColor("text-green-500");
-      setProgressBarColor("bg-green-500");
-      setShowPopUp(true);
-      setIsSuccessful(true);
-    } else {
-      console.error("Registration failed:", await response.json());
-      setPopUpHeadline("Rejestracja nieudana");
-      setPopUpMessage("Użytkownik o takich danych już istnieje. Skorzystaj z innego loginu oraz emailu.");
+      if (response.ok) {
+        setPopUpHeadline("Rejestracja zakończona sukcesem");
+        setPopUpMessage("");
+        setPopUpColor("text-green-500");
+        setProgressBarColor("bg-green-500");
+        setShowPopUp(true);
+        setIsSuccessful(true);
+      } else {
+        console.error("Registration failed:", await response.json());
+        setPopUpHeadline("Rejestracja nieudana");
+        setPopUpMessage("Użytkownik o takich danych już istnieje. Skorzystaj z innego loginu oraz emailu.");
+        setPopUpColor("text-red-500");
+        setProgressBarColor("bg-red-500");
+        setShowPopUp(true);
+        setIsSuccessful(false);
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      setPopUpHeadline("Błąd serwera");
+      setPopUpMessage("Nie można połączyć się z serwerem. Spróbuj ponownie później.");
       setPopUpColor("text-red-500");
       setProgressBarColor("bg-red-500");
       setShowPopUp(true);

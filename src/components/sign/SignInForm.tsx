@@ -39,29 +39,39 @@ const SignInForm: React.FC = () => {
       login: username,
       password: password,
     };
-    const response = await fetch("http://localhost:3030/users/signIn", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    });
+    try {
+      const response = await fetch("http://localhost:3030/users/signIn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Login successful:", data);
-      localStorage.setItem("jwtToken", data.token);
-      console.log("JWT Token stored:", localStorage.getItem("jwtToken"));
-      setPopUpHeadline("Zalogowano pomyślnie!");
-      setPopUpMessage("");
-      setPopUpColor("text-green-500");
-      setProgressBarColor("bg-green-500");
-      setShowPopUp(true);
-      setIsSuccessful(true);
-    } else {
-      console.error("Login failed:", await response.text());
-      setPopUpHeadline("Nieprawidłowe dane logowania");
-      setPopUpMessage("Sprawdź login i hasło");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login successful:", data);
+        localStorage.setItem("jwtToken", data.token);
+        console.log("JWT Token stored:", localStorage.getItem("jwtToken"));
+        setPopUpHeadline("Zalogowano pomyślnie!");
+        setPopUpMessage("");
+        setPopUpColor("text-green-500");
+        setProgressBarColor("bg-green-500");
+        setShowPopUp(true);
+        setIsSuccessful(true);
+      } else {
+        console.error("Login failed:", await response.text());
+        setPopUpHeadline("Nieprawidłowe dane logowania");
+        setPopUpMessage("Sprawdź login i hasło");
+        setPopUpColor("text-red-500");
+        setProgressBarColor("bg-red-500");
+        setShowPopUp(true);
+        setIsSuccessful(false);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setPopUpHeadline("Błąd serwera");
+      setPopUpMessage("Nie można połączyć się z serwerem. Spróbuj ponownie później.");
       setPopUpColor("text-red-500");
       setProgressBarColor("bg-red-500");
       setShowPopUp(true);
