@@ -56,22 +56,22 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
                     {userRole === 'owner' ? (
                       cat.category === 'Aktywne' ? (
                         <div className="flex space-x-10">
-                          <Link to={`/owner/branches/coupons/${item.id}`} style={{ cursor: 'pointer' }}>
+                          <Link title='Kupony' to={`/owner/branches/coupons/${item.id}`} style={{ cursor: 'pointer' }}>
                             <Icon withBorder={true} name="icon-discount" size={60} />
                           </Link>
-                          <Link to={`/owner/branches/details/${item.id}`}>
+                          <Link title='Szczegóły' to={`/owner/branches/details/${item.id}`}>
                             <Icon withBorder={true} name="icon-docs" size={60} />
                           </Link>
-                          <Link to={`/owner/branches/coupons-verify/${item.id}`}>
+                          <Link title='Weryfikacja kuponów' to={`/owner/branches/coupons-verify/${item.id}`}>
                             <Icon withBorder={true} name="icon-verify" size={60} />
                           </Link>
                         </div>
                       ) :
                         (
-                          <Link to={`/owner/branches/details/${item.id}`}><Icon withBorder={true} name="icon-docs" size={60} /></Link>
+                          <Link title='Szczegóły' to={`/owner/branches/details/${item.id}`}><Icon withBorder={true} name="icon-docs" size={60} /></Link>
                          )
                   ) : (
-                      <Link to={`/admin/branches/${item.id}`}>
+                      <Link title='Zarządzaj' to={`/admin/branches/${item.id}`}>
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         width="80" 

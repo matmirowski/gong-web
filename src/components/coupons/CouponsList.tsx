@@ -87,13 +87,13 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
                 </div>
               </div>
               {userRole === "owner" && (
-                <div className="flex space-x-10" style={{ cursor: "pointer" }}>
-                  <Icon
-                    withBorder={true}
-                    name="icon-close"
-                    size={60}
-                    onClick={() => handleDelete(coupon.id)}
-                  />
+                <div title="Usuń kupon" className="flex space-x-10" style={{ cursor: "pointer" }}>
+                    <Icon
+                      withBorder={true}
+                      name="icon-close"
+                      size={60}
+                      onClick={() => handleDelete(coupon.id)}
+                    />
                 </div>
               )}
             </div>
