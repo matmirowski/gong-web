@@ -21,6 +21,18 @@ const PopUp: React.FC<PopUpProps> = ({
   const [progress, setProgress] = useState(100);
 
   useEffect(() => {
+    const sound1 = new Audio('/sounds/error.mp3');
+    const sound2 = new Audio('/sounds/okay.mp3');
+
+    sound1.load();
+    sound2.load();
+
+    if (progressBarColor.includes('bg-red-500')) {
+      sound1.play().catch(error => console.error('Error playing sound1:', error));
+    } else {
+      sound2.play().catch(error => console.error('Error playing sound2:', error));
+    }
+
     const totalTime = 20000;
     const intervalTime = 100; 
     const step = (intervalTime / totalTime) * 100;
@@ -43,7 +55,7 @@ const PopUp: React.FC<PopUpProps> = ({
       clearTimeout(timer);
       clearInterval(interval);
     };
-  }, [onClose]);
+  }, [onClose, progressBarColor]);
 
   const formatMessage = (msg: string) => {
     return msg.split('\n').map((line, index) => (
