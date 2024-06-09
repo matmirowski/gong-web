@@ -163,7 +163,10 @@ const NewBranchForm: React.FC = () => {
         Zaprezentuj się klientowi. Podziel się informacjami o sobie
         <br />w formularzu zgłoszeniowym.
       </p>
-      <div className="bg-black h-0.5 w-full my-3"></div>
+      <div className="bg-button-dark-blue h-1 w-full my-3"></div>
+      <p className="text-sm font-black text-t-dark-blue mb-4 text-center">
+        Pola oznaczone gwiazdką (*) są wymagane do wypełnienia.
+      </p>
       <InputField
         text="Nazwa lokalizacji"
         onChange={setName}

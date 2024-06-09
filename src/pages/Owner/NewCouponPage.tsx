@@ -92,7 +92,7 @@ const NewCouponPage: React.FC = () => {
       </Navbar>
       <Box>
         <div className="flex flex-col items-center justify-center p-4">
-          <h1 className="text-button-light-blue font-black text-5xl text-center mb-4">
+          <h1 className="text-t-dark-blue font-black text-5xl text-center mb-4">
             Dodaj nowy kupon!
           </h1>
           <p className="text-xl font-bold text-black text-center mb-4">
@@ -120,9 +120,9 @@ const NewCouponPage: React.FC = () => {
               <Button
                 className="mt-4"
                 state={ButtonState.Active}
-                width="180"
-                height="55"
-                fontSize="28px"
+                width="200"
+                height="40"
+                fontSize="18px"
                 onClick={function (): void {}}
               >
                 Wróć
@@ -132,9 +132,9 @@ const NewCouponPage: React.FC = () => {
               onClick={handleAddCoupon}
               className="mt-4"
               state={ButtonState.Active}
-              width="180"
-              height="55"
-              fontSize="28px"
+              width="200"
+              height="40"
+              fontSize="18px"
             >
               Dodaj
             </Button>

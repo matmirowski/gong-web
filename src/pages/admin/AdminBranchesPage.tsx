@@ -65,7 +65,7 @@ const AdminBranchesPage: React.FC = () => {
       items: activeBranches,
     },
     {
-      category: 'Oczekujace',
+      category: 'Oczekujące',
       items: pendingBranches,
     },
     {

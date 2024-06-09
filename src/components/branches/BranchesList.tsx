@@ -48,7 +48,7 @@ const BranchesList: React.FC<BranchesListProps> = ({ categories }) => {
             activeCategory === cat.category && (
               <div key={cat.category}>
                 {cat.items.length === 0 ? (
-                  <div className="text-black text-3xl font-extrabold font-proxima-nova text-center">Brak branchy w danej kategorii</div>
+                  <div className="text-t-dark-blue text-3xl font-extrabold font-proxima-nova text-center">Brak zgłoszeń w danej kategorii</div>
                 ) : (
                   cat.items.map((item, index) => (
                     <div key={index} className="bg-white flex items-center justify-between p-4 mb-1 border rounded-lg shadow">

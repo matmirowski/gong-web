@@ -65,29 +65,29 @@ const OwnerBranchPage: React.FC = () => {
   return (
     <>
       <Navbar>
-      <Link to="/home">
-        <Button
-          onClick={() => console.log("Navigating to owner...")}
-          state={ButtonState.Active}
-          width="136"
-          height="35"
-        >
+        <Link to="/home">
+          <Button
+            onClick={() => console.log("Navigating to owner...")}
+            state={ButtonState.Active}
+            width="136"
+            height="35"
+          >
             Główna
-        </Button>
+          </Button>
         </Link>
         <Link to="/">
-        <Button
-          onClick={() => {
-            console.log("Logging out...");
-            localStorage.removeItem("jwtToken");
-            window.location.reload();
-          }}
-          state={ButtonState.Active}
-          width="136"
-          height="35"
-        >
+          <Button
+            onClick={() => {
+              console.log("Logging out...");
+              localStorage.removeItem("jwtToken");
+              window.location.reload();
+            }}
+            state={ButtonState.Active}
+            width="136"
+            height="35"
+          >
             Wyloguj
-        </Button>
+          </Button>
         </Link>
       </Navbar>
       <SizeableBox>
@@ -160,16 +160,27 @@ const OwnerBranchPage: React.FC = () => {
               <div className="flex justify-center space-x-4 mt-6 w-full">
                 {branch.status === "active" && (
                   <>
-                      <Link to={`/owner/branches/details/edit/${branchId}`}>
-                    <Button
-                      state={ButtonState.Active}
-                      width="400"
-                      height="60"
-                      fontSize="32px"
-                      onClick={() => () => console.log("Navigating...")}
-                    >
-                        EDYTUJ ZGŁOSZENIE
-                    </Button>
+                    <Link to="/owner/branches">
+                      <Button
+                        state={ButtonState.Active}
+                        width="200"
+                        height="40"
+                        fontSize="18px"
+                        onClick={() => console.log("Going back...")}
+                      >
+                        WRÓĆ
+                      </Button>
+                    </Link>
+                    <Link to={`/owner/branches/details/edit/${branchId}`}>
+                      <Button
+                        state={ButtonState.Active}
+                        width="200"
+                        height="40"
+                        fontSize="18px"
+                        onClick={() => console.log("Navigating...")}
+                      >
+                        EDYTUJ
+                      </Button>
                     </Link>
                   </>
                 )}

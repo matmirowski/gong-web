@@ -13,8 +13,7 @@ const EditBranchForm: React.FC = () => {
   const [popUpHeadline, setPopUpHeadline] = useState<string>("");
   const [popUpMessage, setPopUpMessage] = useState<string>("");
   const [popUpColor, setPopUpColor] = useState<string>("text-red-500");
-  const [progressBarColor, setProgressBarColor] =
-    useState<string>("bg-red-500");
+  const [progressBarColor, setProgressBarColor] = useState<string>("bg-red-500");
   const [isSuccessful, setIsSuccessful] = useState<boolean>(false);
   const { branchId } = useParams<{ branchId: string }>();
   const { userId, token } = useAuth();
@@ -31,9 +30,7 @@ const EditBranchForm: React.FC = () => {
   const handleEdit = async () => {
     const validationErrors = validateForm();
     if (validationErrors.length > 0) {
-      setPopUpHeadline(
-        "Formularz zawiera błędy. Proszę poprawić poniższe pola:"
-      );
+      setPopUpHeadline("Formularz zawiera błędy. Proszę poprawić poniższe pola:");
       setPopUpMessage(validationErrors.join("\n"));
       setPopUpColor("text-red-500");
       setProgressBarColor("bg-red-500");
@@ -93,7 +90,7 @@ const EditBranchForm: React.FC = () => {
   return (
     <Box>
       <div className="flex flex-col items-center justify-center p-4">
-        <h1 className="text-button-light-blue font-black text-5xl text-center mb-4">
+        <h1 className="text-t-dark-blue font-black text-4xl text-center mb-4">
           Witaj w edytorze zgłoszeń!
         </h1>
         <p className="text-xl font-bold text-black text-center mb-4">
@@ -115,16 +112,27 @@ const EditBranchForm: React.FC = () => {
           required={true}
           multiline={true}
         />
+        <div className="my-4" />
+        <div className="flex space-x-4 mt-4">
         <Button
-          onClick={handleEdit}
-          state={ButtonState.Active}
-          className="mt-4"
-          width="250"
-          height="55"
-          fontSize="28px"
-        >
-          Zatwierdź
-        </Button>
+            onClick={() => navigate(-1)}
+            state={ButtonState.Active}
+            width="200"
+            height="40"
+            fontSize="18px"
+          >
+            Wróć
+          </Button>
+          <Button
+            onClick={handleEdit}
+            state={ButtonState.Active}
+            width="200"
+            height="40"
+            fontSize="18px"
+          >
+            Zatwierdź
+          </Button>
+        </div>
         {showPopUp && (
           <PopUp
             headline={popUpHeadline}

@@ -69,12 +69,14 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="relative bg-light-blue p-5 rounded-[10px] w-[1000px] h-[600px] mx-auto">
-        <h1 className="text-button-light-blue font-black text-5xl text-center mb-4">
+        <h1 className="text-t-dark-blue font-black text-5xl text-center mb-4">
           Kupony
         </h1>
         <div className="p-5 rounded-lg mt-2 overflow-y-auto h-[450px]">
           {couponList.length === 0 ? (
-            <div className="text-black text-3xl font-extrabold font-proxima-nova">Brak kuponów w danej kategorii</div>
+            <div className="text-black text-3xl font-extrabold font-proxima-nova">
+              Brak kuponów w danej kategorii
+            </div>
           ) : (
             couponList.map((coupon) => (
               <div
@@ -90,7 +92,11 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
                   </div>
                 </div>
                 {userRole === "owner" && (
-                  <div title="Usuń kupon" className="flex space-x-10" style={{ cursor: "pointer" }}>
+                  <div
+                    title="Usuń kupon"
+                    className="flex space-x-10"
+                    style={{ cursor: "pointer" }}
+                  >
                     <Icon
                       withBorder={true}
                       name="icon-close"
@@ -108,6 +114,8 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
             <Link to={`/owner/branches`}>
               <Button
                 width="200"
+                height="40"
+                fontSize="18px"
                 onClick={function (): void {}}
                 state={ButtonState.Active}
               >
@@ -117,6 +125,8 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
             <Link to={`/owner/branches/coupons/${branchId}/new`}>
               <Button
                 width="200"
+                height="40"
+                fontSize="18px"
                 onClick={function (): void {}}
                 state={ButtonState.Active}
               >
@@ -130,6 +140,8 @@ const CouponsList: React.FC<CouponsListProps> = ({ coupons }) => {
             <Link to={`/admin/branches/${branchId}`}>
               <Button
                 width="200"
+                height="40"
+                fontSize="18px"
                 onClick={function (): void {}}
                 state={ButtonState.Active}
               >

@@ -56,7 +56,7 @@ const AboutUsPage: React.FC = () => {
                   Główne benefity współpracy:
                 </span>
                 <br />
-                <ul className="list-disc list-inside m-4 text-lg font-bold text-black text-base text-start pt-1">
+                <ul className="list-disc list-inside m-4 text-md font-bold text-black text-base text-start pt-1">
                   <li>Promuj się wśród tysięcy aktywnych studentów.</li>
                   <li>Przyciągaj klientów dzięki unikalnym kodom rabatowym.</li>
                   <li>

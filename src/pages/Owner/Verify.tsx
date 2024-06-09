@@ -28,7 +28,7 @@ const Verify: React.FC = () => {
     if (code === "") {
       setPopupMessage({
         headline: "Błąd",
-        message: "Podaj kod",
+        message: "Nie podano kodu rabatowego.",
         color: "text-red-500",
         progressBarColor: "bg-red-500",
       });
@@ -52,8 +52,8 @@ const Verify: React.FC = () => {
     if (response.ok && data.type === "success") {
       console.log("Verification successful:", data);
       setPopupMessage({
-        headline: "Sukces",
-        message: `Kupon ważny\nTytul: ${data.title}\nOpis: ${data.description}`,
+        headline: "Sukces!",
+        message: `\nTytul: ${data.title}\nOpis: ${data.description}`,
         color: "text-green-500",
         progressBarColor: "bg-green-500",
       });
@@ -75,7 +75,7 @@ const Verify: React.FC = () => {
       }
 
       setPopupMessage({
-        headline: "Błąd",
+        headline: "Błąd. Kupon niepoprawny!",
         message,
         color,
         progressBarColor,
@@ -112,7 +112,7 @@ const Verify: React.FC = () => {
       </Navbar>
       <SizeableBox>
         <div className="flex flex-col items-center justify-center p-4">
-          <h1 className="text-button-light-blue font-black text-5xl text-center mb-4">
+          <h1 className="text-t-dark-blue font-black text-5xl text-center mb-4">
             Zweryfikuj kupon rabatowy
           </h1>
           <div className="my-8" />
@@ -126,16 +126,28 @@ const Verify: React.FC = () => {
             }}
           />
           <div className="my-8" />
+          <div className="flex space-x-4 mt-4">
           <Button
-            className="mt-4"
-            width="250"
-            height="55"
-            fontSize="28px"
-            onClick={handleVerify}
-            state={ButtonState.Active}
-          >
-            Sprawdz
-          </Button>
+              className="mt-4"
+              width="200"
+              height="40"
+              fontSize="18px"
+              onClick={() => window.history.back()}
+              state={ButtonState.Active}
+            >
+              Wróć
+            </Button>
+            <Button
+              className="mt-4"
+              width="200"
+              height="40"
+              fontSize="18px"
+              onClick={handleVerify}
+              state={ButtonState.Active}
+            >
+              SPRAWDŹ
+            </Button>
+          </div>
         </div>
       </SizeableBox>
       {popupVisible && (

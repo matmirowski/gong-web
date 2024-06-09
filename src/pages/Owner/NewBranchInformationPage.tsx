@@ -37,6 +37,7 @@ const NewBranchInformationPage = () => {
       <Box>
         <div className="grid grid-cols-2 items-center justify-center h-full">
           <div className="flex flex-col text-t-dark-blue font-proxima-nova text-bold items-center justify-center my-20">
+          <div className="h-0.25 w-full my-3"></div>
             <div className="flex flex-col">
               <h2 className="text-3xl font-black text-center">
                 TWOJA SZANSA NA
